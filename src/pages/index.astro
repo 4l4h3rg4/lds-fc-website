@@ -1,0 +1,172 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ArrowRight, Zap, Shield, Globe } from "lucide-react";
+import MatchCard from "../components/MatchCard.astro";
+import QuoteSection from "../components/QuoteSection.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="LDS FC | El Rugido">
+	<main class="w-full relative">
+		<!-- Hero Section -->
+		<div
+			class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+		>
+			<!-- Hero Text -->
+			<div
+				class="relative z-10 flex flex-col items-center text-center px-6"
+			>
+				<div
+					class="mb-4 overflow-hidden rounded-full border border-[var(--color-neon-cyan)]/30 bg-[var(--color-neon-cyan)]/10 backdrop-blur-sm px-4 py-1.5 animate-fade-in-up"
+				>
+					<span
+						class="text-xs font-bold tracking-widest text-[var(--color-neon-cyan)] uppercase"
+						>Manifiesto Oficial</span
+					>
+				</div>
+
+				<h1
+					class="text-6xl md:text-9xl font-heading font-bold tracking-tighter uppercase leading-[0.8] mb-6 text-white mix-blend-overlay opacity-90 animate-fade-in-up delay-100"
+				>
+					El que<br />
+					<span
+						class="text-transparent bg-clip-text bg-gradient-to-b from-[var(--color-neon-cyan)] to-[var(--color-brand-blue)]"
+						>abandona</span
+					><br />
+					pierde.
+				</h1>
+
+				<!-- Graffiti Layer -->
+				<div
+					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-full max-w-lg opacity-20 pointer-events-none"
+				>
+					<p
+						class="font-graffiti text-9xl text-white rotate-[-12deg] whitespace-nowrap blur-[2px]"
+					>
+						LDS FC
+					</p>
+				</div>
+
+				<p
+					class="text-lg md:text-2xl font-light text-neutral-400 max-w-xl mb-12 animate-fade-in-up delay-200"
+				>
+					No es fútbol. Es familia. Es barrio. Es rugido.
+					<span
+						class="block font-graffiti text-[var(--color-neon-cyan)] mt-2 rotate-2"
+						>"Somos Los De Siempre"</span
+					>
+				</p>
+
+				<div
+					class="flex flex-col md:flex-row gap-4 animate-fade-in-up delay-300 w-full max-w-md"
+				>
+					<a
+						href="/comunidad"
+						class="group relative px-8 py-4 bg-[var(--color-neon-cyan)] text-black font-heading font-bold text-xl uppercase tracking-wider clip-path-slope hover:bg-[var(--color-brand-blue)] hover:text-white transition-colors flex items-center justify-center gap-2"
+					>
+						Ser del Círculo
+						<ArrowRight
+							size={24}
+							className="group-hover:translate-x-1 transition-transform"
+						/>
+					</a>
+					<a
+						href="/historia"
+						class="px-8 py-4 border border-white/20 hover:bg-white/5 font-heading font-medium text-lg uppercase tracking-wider text-white transition-colors flex items-center justify-center"
+					>
+						Leer Manifiesto
+					</a>
+				</div>
+			</div>
+
+		<!-- Match Section -->
+		<section class="py-24 px-6 md:px-12 relative z-10">
+			<div class="max-w-7xl mx-auto flex flex-col items-center">
+				<h2
+					class="font-heading text-xl md:text-2xl text-neutral-400 uppercase tracking-[0.2em] mb-12"
+				>
+					<span class="text-neutral-600">LA</span> FECHA
+				</h2>
+
+				<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+					<MatchCard
+						variant="neutral"
+						label="Ultimo Resultado"
+						team1="LDS FC"
+						team2="FC Barrio Norte"
+						score1="3"
+						score2="1"
+						date="8 de Diciembre, 2024"
+						location="Cancha Municipal"
+						isResult={true}
+					/>
+					<MatchCard
+						variant="cyan"
+						label="Próximo Partido"
+						team1="LDS FC"
+						team2="Los Guerreros FC"
+						date="15 de Diciembre, 2024"
+						time="16:30"
+						location="Complejo Deportivo Central"
+					/>
+				</div>
+			</div>
+		</section>
+		<QuoteSection />
+
+		<!-- Features Cards -->
+		<section class="py-24 px-6 relative z-10">
+			<div
+				class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
+			>
+				<FeatureCard
+					icon="users"
+					title="La Familia"
+					description="Conoce a los que sudan la camiseta"
+				/>
+				<FeatureCard
+					icon="heart"
+					title="Más Que Fútbol"
+					description="Proyectos que cambian vidas"
+				/>
+				<FeatureCard
+					icon="shopping-bag"
+					title="El Estandarte"
+					description="Lleva los colores con orgullo"
+				/>
+			</div>
+		</section>
+
+		<Footer />
+	</main>
+</Layout>
+
+<style>
+	.animate-fade-in-up {
+		animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+		opacity: 0;
+		transform: translateY(40px);
+	}
+
+	.delay-100 {
+		animation-delay: 0.1s;
+	}
+	.delay-200 {
+		animation-delay: 0.2s;
+	}
+	.delay-300 {
+		animation-delay: 0.3s;
+	}
+
+	.clip-path-slope {
+		clip-path: polygon(10% 0, 100% 0, 100% 80%, 90% 100%, 0% 100%, 0% 20%);
+	}
+
+	@keyframes fadeInUp {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

@@ -1,0 +1,110 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { MessageSquare, ThumbsUp } from "lucide-react";
+
+const stories = [
+    {
+        author: "Carlitos M.",
+        title: "El fútbol me salvó",
+        body: "Cuando perdí mi trabajo, caí en un pozo oscuro. LDS me dio una rutina, un motivo para levantarme los martes y jueves.",
+        tag: "Superación",
+    },
+    {
+        author: "Ana R.",
+        title: "Más que un club",
+        body: "Llegué buscando deporte y encontré hermanos. Gracias por el apoyo cuando mi vieja enfermó.",
+        tag: "Familia",
+    },
+];
+---
+
+<Layout title="LDS FC | La Tribu">
+    <main class="max-w-6xl mx-auto px-6 pt-32 pb-20">
+        <h1 class="font-heading text-6xl md:text-8xl text-white uppercase mb-4">
+            La Tribu
+        </h1>
+        <p class="text-xl text-neutral-400 mb-16 max-w-2xl">
+            Historias reales de gente real. Aquí no juzgamos, aquí escuchamos.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+            <!-- New Post Card -->
+            <div
+                class="border border-dashed border-white/20 p-8 rounded-sm flex flex-col items-center justify-center text-center hover:bg-white/5 transition-colors cursor-pointer min-h-[300px]"
+            >
+                <MessageSquare
+                    size={48}
+                    className="text-[var(--color-neon-cyan)] mb-4"
+                />
+                <h3 class="font-heading text-xl text-white uppercase mb-2">
+                    Cuenta tu historia
+                </h3>
+                <p class="text-sm text-neutral-500">
+                    Lo que escribas aquí queda en la familia.
+                </p>
+            </div>
+
+            {
+                stories.map((s) => (
+                    <div class="bg-[#1a1a1a] p-8 rounded-sm relative group overflow-hidden">
+                        <div class="absolute top-0 right-0 p-2 opacity-50">
+                            <span class="text-[10px] font-mono border border-white/20 px-2 py-1 rounded-full uppercase">
+                                {s.tag}
+                            </span>
+                        </div>
+                        <p class="font-graffiti text-white/10 text-6xl absolute -bottom-4 -right-4 rotate-12 select-none">
+                            LDS
+                        </p>
+
+                        <h3 class="font-heading text-2xl text-white mb-4">
+                            "{s.title}"
+                        </h3>
+                        <p class="text-neutral-400 leading-relaxed mb-6 font-light">
+                            {s.body}
+                        </p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="font-bold text-[var(--color-neon-cyan)] text-sm uppercase">
+                                {s.author}
+                            </span>
+                            <button class="text-neutral-600 hover:text-white transition-colors flex items-center gap-1">
+                                <ThumbsUp size={14} />{" "}
+                                <span class="text-xs">Respeto</span>
+                            </button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="bg-white/5 border-l-4 border-[var(--color-neon-cyan)] p-8">
+            <h2 class="font-heading text-3xl text-white mb-4">
+                La Voz del Barrio
+            </h2>
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-1">
+                    <p class="text-neutral-400 mb-4">
+                        Propuesta de la semana: <strong class="text-white"
+                            >"Jornada de limpieza en la plaza"</strong
+                        >
+                    </p>
+                    <div
+                        class="w-full bg-white/10 h-2 rounded-full overflow-hidden"
+                    >
+                        <div class="bg-[var(--color-neon-cyan)] h-full w-[70%]">
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-between text-xs font-mono mt-2 text-neutral-500"
+                    >
+                        <span>70% APOYO</span>
+                        <span>30% NO</span>
+                    </div>
+                </div>
+                <button
+                    class="px-6 py-3 bg-white text-black font-bold uppercase hover:bg-neutral-200 transition-colors"
+                    >Votar</button
+                >
+            </div>
+        </div>
+    </main>
+</Layout>

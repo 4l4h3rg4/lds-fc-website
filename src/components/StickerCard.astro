@@ -1,0 +1,86 @@
+---
+interface Props {
+    image?: string;
+    name: string;
+    role: string;
+    number?: string;
+    quote?: string;
+}
+
+const { image, name, role, number, quote } = Astro.props;
+---
+
+<div class="relative group cursor-pointer selection:none">
+    <!-- Tape Effect -->
+    <div
+        class="absolute -top-3 left-1/2 -translate-x-1/2 w-12 h-6 bg-white/20 backdrop-blur-md rotate-[-2deg] z-20 shadow-sm opacity-80"
+    >
+    </div>
+
+    <div
+        class="relative bg-white p-3 pb-8 rotate-1 group-hover:rotate-0 transition-transform duration-300 ease-out shadow-lg hover:shadow-2xl hover:scale-[1.02] hover:z-10"
+    >
+        <!-- Grunge Texture Overlay on Card -->
+        <div
+            class="absolute inset-0 bg-noise opacity-30 mix-blend-multiply pointer-events-none"
+        >
+        </div>
+
+        <div
+            class="aspect-[3/4] bg-neutral-200 relative overflow-hidden mb-3 grayscale group-hover:grayscale-0 transition-all duration-500"
+        >
+            {
+                image ? (
+                    <img
+                        src={image}
+                        alt={name}
+                        class="w-full h-full object-cover"
+                    />
+                ) : (
+                    <div class="w-full h-full flex flex-col items-center justify-center bg-neutral-800 text-neutral-600">
+                        <span class="font-heading text-6xl font-bold opacity-20">
+                            LDS
+                        </span>
+                    </div>
+                )
+            }
+
+            {
+                number && (
+                    <div class="absolute top-2 right-2 font-heading font-bold text-4xl text-white drop-shadow-md outline-text">
+                        {number}
+                    </div>
+                )
+            }
+        </div>
+
+        <div class="text-center">
+            <h3
+                class="font-heading font-bold text-2xl uppercase tracking-tighter text-black leading-none mb-1"
+            >
+                {name}
+            </h3>
+            <p
+                class="font-mono text-xs uppercase tracking-widest text-neutral-500 mb-4"
+            >
+                {role}
+            </p>
+
+            {
+                quote && (
+                    <div class="relative mt-2">
+                        <p class="font-graffiti text-sm text-neutral-600 rotate-[-1deg] leading-tight">
+                            "{quote}"
+                        </p>
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .outline-text {
+        -webkit-text-stroke: 1px black;
+    }
+</style>

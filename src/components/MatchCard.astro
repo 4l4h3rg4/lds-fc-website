@@ -1,0 +1,122 @@
+---
+import { Calendar, MapPin } from "lucide-react";
+
+interface Props {
+    variant?: "neutral" | "cyan";
+    label: string;
+    team1: string;
+    team2: string;
+    score1?: string | number;
+    score2?: string | number;
+    date: string;
+    time?: string;
+    location: string;
+    isResult?: boolean;
+}
+
+const {
+    variant = "neutral",
+    label,
+    team1,
+    team2,
+    score1,
+    score2,
+    date,
+    time,
+    location,
+    isResult = false,
+} = Astro.props;
+
+const borderColor =
+    variant === "cyan"
+        ? "border-[var(--color-neon-cyan)]/50 shadow-[0_0_15px_rgba(34,211,238,0.2)]"
+        : "border-white/10";
+const labelBg =
+    variant === "cyan"
+        ? "bg-[var(--color-neon-cyan)] text-black"
+        : "bg-white/10 text-white";
+const scoreColor =
+    variant === "cyan"
+        ? "text-[var(--color-neon-cyan)]"
+        : "text-[var(--color-neon-cyan)]"; // Always cyan according to image? Actually "3" is cyan in left card.
+---
+
+<div
+    class={`relative p-6 bg-[#1a1a1a]/80 backdrop-blur-md rounded-lg border ${borderColor} flex flex-col gap-6 w-full max-w-lg transition-transform hover:scale-[1.02] duration-300`}
+>
+    <!-- Label Badge -->
+    <div class="absolute -top-3 left-6">
+        <span
+            class={`px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-sm ${labelBg}`}
+        >
+            {label}
+        </span>
+    </div>
+
+    <div class="flex items-center justify-between mt-4">
+        <!-- Team 1 -->
+        <div class="flex flex-col items-center text-center w-1/3">
+            <h3
+                class="font-heading text-xl md:text-2xl font-bold uppercase leading-tight"
+            >
+                {team1}
+            </h3>
+            {
+                isResult && (
+                    <span
+                        class={`font-heading text-5xl md:text-6xl font-bold mt-2 ${scoreColor}`}
+                    >
+                        {score1}
+                    </span>
+                )
+            }
+        </div>
+
+        <!-- VS -->
+        <div
+            class="flex flex-col items-center justify-center w-1/6 text-neutral-500 font-mono text-sm"
+        >
+            <span>VS</span>
+        </div>
+
+        <!-- Team 2 -->
+        <div class="flex flex-col items-center text-center w-1/3">
+            <h3
+                class="font-heading text-xl md:text-2xl font-bold uppercase leading-tight"
+            >
+                {team2}
+            </h3>
+            {
+                isResult && (
+                    <span class="font-heading text-5xl md:text-6xl font-bold mt-2 text-white">
+                        {score2}
+                    </span>
+                )
+            }
+        </div>
+    </div>
+
+    <!-- Meta Info -->
+    <div
+        class="flex flex-col gap-2 mt-auto text-xs md:text-sm text-neutral-400 font-mono border-t border-white/5 pt-4"
+    >
+        <div class="flex items-center gap-2">
+            <Calendar size={14} />
+            <span>{date} {time && `— ${time}`}</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <MapPin size={14} />
+            <span>{location}</span>
+        </div>
+    </div>
+
+    {
+        isResult && (
+            <div class="mt-2 text-center">
+                <span class="text-[var(--color-neon-cyan)] font-bold tracking-widest text-sm uppercase">
+                    ¡Victoria!
+                </span>
+            </div>
+        )
+    }
+</div>

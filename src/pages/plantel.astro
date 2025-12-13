@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import StickerCard from "../components/StickerCard.astro";
+
+// Mock Data
+const players = [
+    {
+        name: "El Tanque",
+        role: "Defensa",
+        number: "04",
+        quote: "No pasa nadie.",
+    },
+    {
+        name: "La Pulga",
+        role: "Mediocampo",
+        number: "10",
+        quote: "El balón al piso.",
+    },
+    {
+        name: "Muro",
+        role: "Arquero",
+        number: "01",
+        quote: "Mi arco es sagrado.",
+    },
+    {
+        name: "Rayo",
+        role: "Delantero",
+        number: "07",
+        quote: "Correr hasta morir.",
+    },
+    { name: "Capi", role: "Capitán", number: "05", quote: "Cabeza fría." },
+    {
+        name: "Zurdo",
+        role: "Lateral",
+        number: "03",
+        quote: "Por la banda se gana.",
+    },
+];
+---
+
+<Layout title="LDS FC | El Plantel">
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <div
+            class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6"
+        >
+            <div>
+                <span
+                    class="font-mono text-sm text-[var(--color-neon-cyan)] tracking-widest"
+                    >LA FAMILIA</span
+                >
+                <h1
+                    class="font-heading text-6xl md:text-8xl text-white uppercase mt-2"
+                >
+                    Plantel 2024
+                </h1>
+            </div>
+
+            <div class="flex gap-4">
+                <button
+                    class="px-4 py-2 border border-white/20 text-xs font-bold uppercase hover:bg-white/10 transition-colors"
+                    >Todo</button
+                >
+                <button
+                    class="px-4 py-2 border border-white/20 text-xs font-bold uppercase hover:bg-white/10 transition-colors text-neutral-500"
+                    >Defensa</button
+                >
+                <button
+                    class="px-4 py-2 border border-white/20 text-xs font-bold uppercase hover:bg-white/10 transition-colors text-neutral-500"
+                    >Ataque</button
+                >
+            </div>
+        </div>
+
+        <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+        >
+            {
+                players.map((p) => (
+                    <StickerCard
+                        name={p.name}
+                        role={p.role}
+                        number={p.number}
+                        quote={p.quote}
+                    />
+                ))
+            }
+            <div
+                class="flex flex-col items-center justify-center p-8 border-2 border-dashed border-white/10 rounded-sm opacity-50 hover:opacity-100 transition-opacity cursor-pointer group"
+            >
+                <span
+                    class="text-4xl mb-4 group-hover:scale-110 transition-transform"
+                    >➕</span
+                >
+                <span class="font-heading text-xl uppercase text-center"
+                    >¿Quieres ser uo?</span
+                >
+                <span
+                    class="text-xs font-mono mt-2 text-[var(--color-neon-cyan)]"
+                    >POSTÚLATE</span
+                >
+            </div>
+        </div>
+    </main>
+</Layout>

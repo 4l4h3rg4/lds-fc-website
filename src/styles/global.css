@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Oswald', sans-serif;
+  --font-graffiti: 'Permanent Marker', cursive;
+
+  /* LDS FC Palette - UPDATED TO CYAN/BLUE */
+  --color-background: #0f0f0f;
+  --color-foreground: #e5e5e5;
+
+  --color-primary: #22d3ee;
+  /* Neon Cyan */
+  --color-primary-foreground: #000000;
+
+  --color-accent: #0891b2;
+  /* Darker Blue/Cyan */
+  --color-accent-foreground: #ffffff;
+
+  --color-surface: #1e1e1e;
+  --color-concrete: #2a2a2a;
+
+  /* Neon Cyan for "El que abandona, pierde" and accents */
+  --color-neon-cyan: #22d3ee;
+  --color-neon-cyan-foreground: #000000;
+
+  /* Logo Blue (Deep Cyan/Blue) */
+  --color-brand-blue: #0891b2;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;700&family=Permanent+Marker&display=swap');
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+@layer utilities {
+  .font-graffiti {
+    font-family: var(--font-graffiti);
+  }
+
+  .text-shadow-sm {
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  .clip-path-slope {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+}

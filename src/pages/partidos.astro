@@ -1,0 +1,113 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Calendar, MapPin, Clock } from "lucide-react";
+
+const matches = [
+    {
+        type: "TORNEO",
+        date: "12 DIC",
+        time: "14:00",
+        rival: "Los Pibes FC",
+        place: "Cancha Norte",
+        result: null,
+        status: "NEXT",
+    },
+    {
+        type: "AMISTOSO",
+        date: "05 DIC",
+        time: "20:00",
+        rival: "Barrio Alto",
+        place: "Sede Central",
+        result: "3 - 1",
+        status: "WON",
+    },
+    {
+        type: "TORNEO",
+        date: "28 NOV",
+        time: "16:00",
+        rival: "Furia Roja",
+        place: "Estadio Muni",
+        result: "1 - 1",
+        status: "DRAW",
+    },
+];
+---
+
+<Layout title="LDS FC | Partidos">
+    <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
+        <h1
+            class="font-heading text-6xl md:text-8xl text-white uppercase mb-16"
+        >
+            La Fecha
+        </h1>
+
+        <div class="space-y-6">
+            {
+                matches.map((m) => (
+                    <div
+                        class={`relative group border ${m.status === "NEXT" ? "border-[var(--color-neon-cyan)] bg-[var(--color-neon-cyan)]/5" : "border-white/10 bg-white/5"} p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden transition-all hover:border-[var(--color-neon-cyan)]/50`}
+                    >
+                        {/* Status Strip */}
+                        <div
+                            class={`absolute left-0 top-0 bottom-0 w-1 ${
+                                m.status === "NEXT"
+                                    ? "bg-[var(--color-neon-cyan)]"
+                                    : m.status === "WON"
+                                      ? "bg-green-500"
+                                      : "bg-neutral-500"
+                            }`}
+                        />
+
+                        <div class="flex flex-col md:flex-row gap-6 md:items-center min-w-[200px]">
+                            <div class="text-center md:text-left">
+                                <span class="block font-heading text-3xl md:text-4xl text-white">
+                                    {m.date}
+                                </span>
+                                <span class="block font-mono text-sm text-neutral-500">
+                                    {m.type}
+                                </span>
+                            </div>
+                            <div class="hidden md:block h-10 w-px bg-white/10" />
+                            <div class="flex items-center gap-2 text-neutral-400">
+                                <Clock size={16} />
+                                <span class="font-mono text-sm">
+                                    {m.time} HS
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex-1 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 w-full">
+                            <span class="font-heading text-2xl md:text-3xl text-white">
+                                LDS FC
+                            </span>
+                            <span class="font-mono text-xl text-neutral-600">
+                                VS
+                            </span>
+                            <span class="font-heading text-2xl md:text-3xl text-neutral-300">
+                                {m.rival}
+                            </span>
+                        </div>
+
+                        <div class="flex flex-col items-end min-w-[150px]">
+                            {m.result ? (
+                                <span class="font-heading text-4xl text-[var(--color-neon-cyan)]">
+                                    {m.result}
+                                </span>
+                            ) : (
+                                <span class="font-heading text-xl text-white bg-[var(--color-neon-cyan)]/20 px-3 py-1 rounded-sm border border-[var(--color-neon-cyan)]/30 animate-pulse">
+                                    PRÓXIMO
+                                </span>
+                            )}
+                            <div class="flex items-center gap-1 mt-2 text-neutral-500">
+                                <MapPin size={12} />
+                                <span class="text-[10px] uppercase">
+                                    {m.place}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </main>
+</Layout>

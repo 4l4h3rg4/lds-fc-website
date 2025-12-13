@@ -1,0 +1,46 @@
+---
+import { Users, Heart, Shield, ShoppingBag } from "lucide-react";
+
+interface Props {
+    icon: "users" | "heart" | "shield" | "shopping-bag";
+    title: string;
+    description: string;
+}
+
+const { icon, title, description } = Astro.props;
+
+const IconMap = {
+    users: Users,
+    heart: Heart,
+    shield: Shield,
+    "shopping-bag": ShoppingBag,
+};
+
+const IconComponent = IconMap[icon];
+---
+
+<div
+    class="group relative bg-[#1a1a1a] border border-white/5 p-8 flex flex-col items-center text-center gap-4 transition-all duration-300 hover:border-[var(--color-neon-cyan)]/30 hover:bg-[#1a1a1a]/80"
+>
+    <div
+        class="mb-2 text-[var(--color-neon-cyan)] group-hover:scale-110 transition-transform duration-300"
+    >
+        <IconComponent size={40} strokeWidth={1.5} />
+    </div>
+
+    <h3
+        class="font-heading text-xl font-bold uppercase tracking-wide text-white"
+    >
+        {title}
+    </h3>
+
+    <p class="text-sm text-neutral-400 font-light leading-relaxed">
+        {description}
+    </p>
+
+    <!-- Hover Glow Corner -->
+    <div
+        class="absolute top-0 right-0 w-20 h-20 bg-[var(--color-neon-cyan)]/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+    >
+    </div>
+</div>

@@ -1,0 +1,39 @@
+---
+import DynamicIsland from "../components/DynamicIsland";
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body
+		class="bg-[#0f0f0f] text-[#e5e5e5] min-h-screen selection:bg-[#FFD700]/30 selection:text-black"
+	>
+		<!-- Background Noise & Concrete Effect -->
+		<div
+			class="fixed inset-0 z-[-1] h-full w-full bg-[#0f0f0f] bg-noise pointer-events-none"
+		>
+		</div>
+		<div
+			class="fixed inset-0 z-[-1] bg-gradient-to-tr from-[#1e1e1e] via-transparent to-black opacity-60"
+		>
+		</div>
+
+		<DynamicIsland client:load />
+
+		<slot />
+	</body>
+</html>

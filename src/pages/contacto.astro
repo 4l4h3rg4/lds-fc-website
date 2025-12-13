@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Mail, MapPin, Instagram, Phone } from "lucide-react";
+---
+
+<Layout title="LDS FC | Hablemos Claro">
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-20">
+        <h1
+            class="font-heading text-6xl md:text-8xl text-white uppercase mb-4 text-center"
+        >
+            Hablemos Claro
+        </h1>
+        <p class="text-xl text-neutral-400 mb-16 text-center">
+            Si llegaste hasta acá, algo te movió. Escríbenos.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Form -->
+            <form class="space-y-6">
+                <div>
+                    <label
+                        class="block font-bold text-white uppercase text-sm mb-2"
+                        >Nombre / Apodo</label
+                    >
+                    <input
+                        type="text"
+                        class="w-full bg-white/5 border border-white/20 p-4 text-white focus:outline-none focus:border-[var(--color-neon-cyan)] transition-colors"
+                        placeholder="¿Cómo te dicen?"
+                    />
+                </div>
+                <div>
+                    <label
+                        class="block font-bold text-white uppercase text-sm mb-2"
+                        >Motivo</label
+                    >
+                    <select
+                        class="w-full bg-white/5 border border-white/20 p-4 text-white focus:outline-none focus:border-[var(--color-neon-cyan)] transition-colors appearance-none"
+                    >
+                        <option>Quiero entrenar</option>
+                        <option>Quiero colaborar</option>
+                        <option>Prensa / Media</option>
+                        <option>Solo saludar</option>
+                    </select>
+                </div>
+                <div>
+                    <label
+                        class="block font-bold text-white uppercase text-sm mb-2"
+                        >Mensaje</label
+                    >
+                    <textarea
+                        rows="5"
+                        class="w-full bg-white/5 border border-white/20 p-4 text-white focus:outline-none focus:border-[var(--color-neon-cyan)] transition-colors"
+                        placeholder="Suelta el rollo..."></textarea>
+                </div>
+                <button
+                    class="w-full py-4 bg-[var(--color-neon-cyan)] text-black font-heading font-bold text-xl uppercase hover:bg-[#eac400] transition-colors"
+                >
+                    Enviar Mensaje
+                </button>
+            </form>
+
+            <!-- Info -->
+            <div class="space-y-8 md:pl-8 md:border-l border-white/10">
+                <div>
+                    <h3 class="font-heading text-2xl text-white mb-4">
+                        Coordenadas
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 text-neutral-400">
+                            <MapPin className="text-[var(--color-neon-cyan)]" />
+                            <span
+                                >La Cancha, Sector 4. <br />Pregunta por "El
+                                Colo".</span
+                            >
+                        </div>
+                        <div class="flex items-center gap-4 text-neutral-400">
+                            <Mail className="text-[var(--color-neon-cyan)]" />
+                            <span>contacto@lds-fc.com</span>
+                        </div>
+                        <div class="flex items-center gap-4 text-neutral-400">
+                            <Phone className="text-[var(--color-neon-cyan)]" />
+                            <span>+56 9 1234 5678</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-heading text-2xl text-white mb-4">Redes</h3>
+                    <div class="flex gap-4">
+                        <a
+                            href="#"
+                            class="h-12 w-12 bg-white/5 flex items-center justify-center hover:bg-[var(--color-neon-cyan)] hover:text-black transition-colors rounded-full"
+                        >
+                            <Instagram />
+                        </a>
+                        <a
+                            href="#"
+                            class="h-12 w-12 bg-white/5 flex items-center justify-center hover:bg-[var(--color-neon-cyan)] hover:text-black transition-colors rounded-full"
+                        >
+                            <span class="font-bold">X</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div
+                    class="p-6 bg-white/5 border border-white/10 rounded-sm mt-8"
+                >
+                    <p class="font-graffiti text-white text-center rotate-1">
+                        "Aquí la lealtad vale más que cualquier gol."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
