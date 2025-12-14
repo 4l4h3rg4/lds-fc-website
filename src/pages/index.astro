@@ -3,7 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import { ArrowRight, Zap, Shield, Globe } from "lucide-react";
 import MatchCard from "../components/home/MatchCard.astro";
 import QuoteSection from "../components/home/QuoteSection.astro";
-import FeatureCard from "../components/home/FeatureCard.astro";
+import HomeManifesto from "../components/home/HomeManifesto.astro";
+import HomeSquad from "../components/home/HomeSquad.astro";
+import HomeTraining from "../components/home/HomeTraining.astro";
+import HomeCommunity from "../components/home/HomeCommunity.astro";
+import HomeStore from "../components/home/HomeStore.astro";
+import HomeContact from "../components/home/HomeContact.astro";
 import Footer from "../components/shared/Footer.astro";
 ---
 
@@ -126,32 +131,30 @@ import Footer from "../components/shared/Footer.astro";
 						rotation="right"
 					/>
 				</div>
+
+				<div class="mt-12 text-center">
+					<a
+						href="/partidos"
+						class="inline-block px-8 py-3 bg-transparent border border-white/20 text-white font-heading uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-colors"
+					>
+						Ver más partidos
+					</a>
+				</div>
 			</div>
 		</section>
 		<QuoteSection />
 
-		<!-- Features Cards -->
-		<section class="py-24 px-6 relative z-10">
-			<div
-				class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
-			>
-				<FeatureCard
-					icon="users"
-					title="La Familia"
-					description="Conoce a los que sudan la camiseta"
-				/>
-				<FeatureCard
-					icon="heart"
-					title="Más Que Fútbol"
-					description="Proyectos que cambian vidas"
-				/>
-				<FeatureCard
-					icon="shopping-bag"
-					title="El Estandarte"
-					description="Lleva los colores con orgullo"
-				/>
-			</div>
-		</section>
+		<HomeManifesto />
+
+		<HomeSquad />
+
+		<HomeTraining />
+
+		<HomeCommunity />
+
+		<HomeStore />
+
+		<HomeContact />
 
 		<Footer />
 	</main>

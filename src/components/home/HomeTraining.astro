@@ -1,0 +1,86 @@
+---
+import { Clock, MapPin } from "lucide-react";
+---
+
+<section class="py-24 px-6 relative bg-[#0f0f0f] border-t border-white/5">
+    <div
+        class="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center"
+    >
+        <!-- Text Side -->
+        <div class="flex-1 text-center lg:text-left">
+            <h2
+                class="font-heading text-3xl md:text-5xl text-white uppercase tracking-wider mb-6"
+            >
+                EL TALLER
+            </h2>
+            <p
+                class="text-neutral-400 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0"
+            >
+                "Acá no venimos a pasar el rato. Se corre hasta que el cuerpo
+                dice basta, y después se corre un poco más."
+            </p>
+
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
+                <a
+                    href="/entrenamientos"
+                    class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[var(--color-neon-cyan)] text-black font-heading uppercase tracking-widest text-sm hover:bg-white transition-colors"
+                >
+                    <Clock size={16} /> Ver Horarios
+                </a>
+            </div>
+        </div>
+
+        <!-- Info Card Side -->
+        <div class="flex-1 w-full max-w-md">
+            <div
+                class="bg-[#1a1a1a] p-8 border-l-4 border-[var(--color-neon-cyan)] relative shadow-2xl"
+            >
+                <div
+                    class="absolute -top-3 -right-3 bg-white text-black px-3 py-1 font-mono text-xs font-bold uppercase transform rotate-3"
+                >
+                    Próximo
+                </div>
+
+                <h3
+                    class="font-heading text-2xl text-white uppercase mb-6 flex items-center gap-2"
+                >
+                    Entrenamiento
+                </h3>
+
+                <div class="space-y-4">
+                    <div
+                        class="flex items-center justify-between border-b border-white/10 pb-4"
+                    >
+                        <span class="text-neutral-400 font-mono text-sm"
+                            >DIA</span
+                        >
+                        <span class="text-white font-bold uppercase"
+                            >Martes</span
+                        >
+                    </div>
+                    <div
+                        class="flex items-center justify-between border-b border-white/10 pb-4"
+                    >
+                        <span class="text-neutral-400 font-mono text-sm"
+                            >HORA</span
+                        >
+                        <span
+                            class="text-[var(--color-neon-cyan)] font-bold font-mono"
+                            >19:00 HS</span
+                        >
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-neutral-400 font-mono text-sm"
+                            >LUGAR</span
+                        >
+                        <span class="text-white font-bold uppercase text-right"
+                            >Parque Norte</span
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

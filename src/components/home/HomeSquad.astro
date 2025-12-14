@@ -1,0 +1,122 @@
+---
+const players = [
+    {
+        name: "El Tanque",
+        role: "Defensa",
+        number: "04",
+        image: "/logo LDS FC.png",
+        quote: "No pasa nadie."
+    },
+    {
+        name: "La Pulga",
+        role: "Mediocampo",
+        number: "10",
+        image: "/logo LDS FC.png",
+        quote: "El balón al piso."
+    },
+    {
+        name: "Muro",
+        role: "Arquero",
+        number: "01",
+        image: "/logo LDS FC.png",
+        quote: "Mi arco es sagrado."
+    }
+];
+---
+
+<section class="py-24 px-6 relative border-t border-white/5 bg-[#0a0a0a]">
+    <div class="max-w-7xl mx-auto">
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div>
+                <h2 class="font-heading text-3xl md:text-5xl text-white uppercase tracking-wider mb-2">
+                    LA FAMILIA
+                </h2>
+                <p class="text-neutral-400 font-mono text-sm uppercase tracking-widest">
+                    Conoce a quienes defienden el escudo.
+                </p>
+            </div>
+            
+            <a 
+                href="/plantel" 
+                class="hidden md:inline-flex items-center gap-2 text-[var(--color-neon-cyan)] font-heading uppercase tracking-widest text-sm hover:text-white transition-colors group"
+            >
+                Ver Plantel Completo <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+        </div>
+
+        <!-- Squad Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            {players.map(p => (
+                <div class="player-card-home group relative h-[500px] w-full cursor-pointer perspective-1000">
+                    <div class="card-inner-home relative w-full h-full transition-all duration-700 preserve-3d">
+                        <!-- Front Content -->
+                        <div class="absolute inset-0 w-full h-full backface-hidden bg-neutral-900 border border-white/10 overflow-hidden">
+                            <div class="h-full w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                                <img
+                                    src={p.image}
+                                    alt={p.name}
+                                    class="h-full w-full object-cover"
+                                />
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 pt-24">
+                                <span class="text-[var(--color-neon-cyan)] font-mono text-xs tracking-widest uppercase mb-1 block">
+                                    {p.number}
+                                </span>
+                                <h3 class="font-heading text-3xl text-white uppercase italic leading-none">
+                                    {p.name}
+                                </h3>
+                                <span class="text-white/60 text-sm font-light mt-1 block">
+                                    {p.role}
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Back Content (Revealed on Flip) -->
+                        <div class="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-[var(--color-neon-cyan)] p-8 flex flex-col justify-center items-center text-center border-2 border-black">
+                            <h3 class="font-heading text-4xl text-black uppercase mb-6 drop-shadow-sm">{p.name}</h3>
+                            
+                            <div class="space-y-4 font-heading uppercase tracking-wider text-black w-full">
+                                <div class="bg-black/10 py-2 px-4 -rotate-1 rounded-sm">
+                                    <span class="block text-xs font-bold opacity-60">Posición</span>
+                                    <span class="text-xl font-bold">{p.role}</span>
+                                </div>
+                                
+                                <div class="mt-8 pt-6 border-t border-black/20">
+                                    <p class="font-graffiti text-xl leading-tight transform -rotate-2">
+                                        "{p.quote}"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <div class="text-center md:hidden">
+            <a href="/plantel" class="inline-block px-8 py-3 border border-white text-white font-heading uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-colors">
+                CONOCER AL EQUIPO
+            </a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Handles the card flip logic on click
+    const cards = document.querySelectorAll('.player-card-home');
+    cards.forEach((card) => {
+        card.addEventListener('click', () => {
+            const inner = card.querySelector('.card-inner-home');
+            if (inner) inner.classList.toggle('rotate-y-180');
+        });
+    });
+</script>
+
+<style>
+    .perspective-1000 { perspective: 1000px; }
+    .preserve-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+    .card-inner-home { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+</style>
