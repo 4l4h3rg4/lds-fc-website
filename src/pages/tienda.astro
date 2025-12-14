@@ -1,85 +1,171 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { ShoppingBag } from "lucide-react";
+
+interface Product {
+    id: number;
+    title: string;
+    description: string;
+    price: string;
+    badge?: {
+        text: string;
+        color: string; // Tailwind class component or color value
+    };
+}
+
+const products: Product[] = [
+    {
+        id: 1,
+        title: "Camiseta Oficial LDS FC",
+        description:
+            "Negra con detalles dorados. El escudo del león en el pecho. Para los que sudan con orgullo.",
+        price: "$35.000",
+        badge: {
+            text: "MÁS VENDIDO",
+            color: "bg-[var(--color-neon-cyan)] text-black",
+        },
+    },
+    {
+        id: 2,
+        title: "Poleron 'El que abandona, pierde'",
+        description:
+            "Para los días fríos fuera de la cancha. El manifiesto en la espalda.",
+        price: "$45.000",
+        // No badge for this one or maybe custom
+    },
+    {
+        id: 3,
+        title: "Pack de Stickers LDS",
+        description:
+            "10 stickers con frases del barrio, el león y el escudo. Para tu cuaderno, tu termo, tu vida.",
+        price: "$5.000",
+    },
+    {
+        id: 4,
+        title: "Parche Bordado 'León'",
+        description: "Para coser en tu mochila, tu campera, donde quieras.",
+        price: "$8.000",
+        badge: {
+            text: "NUEVO",
+            color: "bg-[var(--color-neon-cyan)] text-black",
+        },
+    },
+    {
+        id: 5,
+        title: "Camiseta Edición Fundadores",
+        description:
+            "Edición limitada con los nombres de los 11 fundadores en el interior. Solo 50 unidades.",
+        price: "$50.000",
+        badge: { text: "EDICIÓN LIMITADA", color: "bg-[#2dd4bf] text-black" },
+    },
+];
 ---
 
 <Layout title="LDS FC | El Estandarte">
     <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
-        <h1
-            class="font-heading text-6xl md:text-8xl text-white uppercase mb-12"
-        >
-            El Estandarte
-        </h1>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24">
-            <div class="relative group">
-                <div
-                    class="absolute inset-0 bg-[var(--color-neon-cyan)] blur-[100px] opacity-20 pointer-events-none"
-                >
-                </div>
-                <div
-                    class="aspect-square bg-neutral-900 border border-white/10 flex items-center justify-center relative z-10 p-10"
-                >
-                    <span
-                        class="font-graffiti text-9xl text-white/5 absolute rotate-[-45deg]"
-                        >CAMISETA</span
-                    >
-                    <div class="text-white text-center">
-                        <span class="block text-8xl">🦁</span>
-                        <p class="mt-4 font-mono text-xs text-neutral-500">
-                            IMAGEN DE PRODUCTO PENDIENTE
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <span class="font-mono text-[var(--color-neon-cyan)] mb-2 block"
-                    >EDICIÓN LIMITADA</span
-                >
-                <h2 class="font-heading text-5xl text-white mb-6">
-                    La Piel del León '24
-                </h2>
-                <p class="text-neutral-400 mb-8 max-w-md">
-                    No es tela. Es armadura. Diseñada para aguantar tirones,
-                    sudor y derrotas. Llévala con orgullo o no la lleves.
-                </p>
-                <div class="flex gap-4 items-center mb-8">
-                    <span class="text-3xl font-bold text-white">$25.000</span>
-                    <span class="text-sm text-neutral-500 line-through"
-                        >$30.000</span
-                    >
-                </div>
-                <button
-                    class="px-8 py-4 bg-[var(--color-neon-cyan)] text-black font-heading font-bold text-xl uppercase hover:bg-[#eac400] transition-colors w-full md:w-auto"
-                >
-                    Reservar Ahora
-                </button>
-            </div>
+        <!-- HEADER SECTION -->
+        <div class="text-center mb-24 max-w-4xl mx-auto">
+            <h1
+                class="font-graffiti text-6xl md:text-6xl text-white uppercase mb-4 tracking-tighter"
+            >
+                EL ESTANDARTE
+            </h1>
+            <p
+                class="font-mono text-neutral-400 text-sm md:text-base uppercase tracking-widest mb-12"
+            >
+                No vendemos ropa. Compartimos identidad.
+            </p>
         </div>
 
-        <h3
-            class="font-heading text-3xl text-white mb-8 border-b border-white/10 pb-4"
-        >
-            Merch del Barrio
-        </h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- PRODUCTS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
             {
-                [1, 2, 3, 4].map((i) => (
-                    <div class="bg-white/5 p-4 border border-white/10 hover:border-[var(--color-neon-cyan)]/50 transition-colors group">
-                        <div class="aspect-square bg-black/50 mb-4 flex items-center justify-center">
-                            <span class="text-4xl grayscale group-hover:grayscale-0 transition-all">
-                                🧢
-                            </span>
+                products.map((p) => (
+                    <div class="bg-[#111] border border-white/5 p-6 md:p-8 flex flex-col group hover:border-[var(--color-neon-cyan)]/30 transition-all duration-300 relative">
+                        {/* Badge */}
+                        {p.badge && (
+                            <div
+                                class={`absolute -top-3 right-4 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider ${p.badge.color}`}
+                            >
+                                {p.badge.text}
+                            </div>
+                        )}
+
+                        {/* Image Placeholder */}
+                        <div class="aspect-square bg-[#1a1a1a] flex items-center justify-center mb-8 border border-white/5 group-hover:bg-[#222] transition-colors">
+                            <ShoppingBag className="text-white/20 w-12 h-12 stroke-[1]" />
                         </div>
-                        <h4 class="font-bold text-white uppercase">
-                            Gorra Oficial
-                        </h4>
-                        <span class="text-[var(--color-neon-cyan)] font-mono text-sm">
-                            $10.000
-                        </span>
+
+                        <h2 class="font-heading text-2xl text-white uppercase mb-2">
+                            {p.title}
+                        </h2>
+
+                        <p class="font-mono text-xs md:text-sm text-neutral-500 mb-4 leading-relaxed line-clamp-3 flex-1">
+                            {p.description}
+                        </p>
+
+                        <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                            <span class="font-heading text-2xl text-[var(--color-neon-cyan)]">
+                                {p.price}
+                            </span>
+                            <button
+                                class="buy-button bg-white text-black font-heading uppercase text-sm px-6 py-2 hover:bg-neutral-200 transition-colors tracking-wide"
+                                data-title={p.title}
+                                data-price={p.price}
+                            >
+                                QUIERO
+                            </button>
+                        </div>
                     </div>
                 ))
             }
         </div>
+
+        <!-- FOOTER / PROFIT SECTION -->
+        <div
+            class="text-center py-16 border-t border-white/10 relative overflow-hidden"
+        >
+            <!-- Background Blur Element -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[var(--color-neon-cyan)]/5 blur-[100px] -z-10 rounded-full"
+            >
+            </div>
+
+            <h3
+                class="font-heading text-3xl md:text-5xl text-white uppercase mb-4 tracking-wide"
+            >
+                100% de las ganancias vuelven al club
+            </h3>
+            <p class="text-neutral-500 max-w-2xl mx-auto text-sm md:text-base">
+                Equipamiento, proyectos sociales. Cada compra es un aporte
+                directo a la familia LDS.
+            </p>
+        </div>
     </main>
 </Layout>
+
+<script>
+    // WhatsApp Phone Number (Same as Contact Page)
+    const PHONE_NUMBER = "5491112345678";
+
+    // Select all buy buttons
+    const buttons = document.querySelectorAll(".buy-button");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const title = button.getAttribute("data-title");
+            const price = button.getAttribute("data-price");
+
+            if (!title || !price) return;
+
+            // Constuct Message
+            // "¡Hola! Estuve viendo la tienda online y me interesa comprar el producto: *{product.title}* ({product.price}). ¿Tienen stock?"
+            const message = `¡Hola! Estuve viendo la pagina web y me interesa comprar el producto: *${title}* (${price}). ¿Tienen stock?`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, "_blank");
+        });
+    });
+</script>

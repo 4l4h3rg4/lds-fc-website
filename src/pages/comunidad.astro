@@ -1,110 +1,95 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { MessageSquare, ThumbsUp } from "lucide-react";
+import { MessageSquare, Heart } from "lucide-react";
 
 const stories = [
     {
-        author: "Carlitos M.",
-        title: "El fútbol me salvó",
-        body: "Cuando perdí mi trabajo, caí en un pozo oscuro. LDS me dio una rutina, un motivo para levantarme los martes y jueves.",
-        tag: "Superación",
+        author: "El Colo",
+        body: "Hace 2 años no toco la droga gracias a que este equipo me dio una camiseta y una responsabilidad.",
+        likes: 142,
     },
     {
-        author: "Ana R.",
-        title: "Más que un club",
-        body: "Llegué buscando deporte y encontré hermanos. Gracias por el apoyo cuando mi vieja enfermó.",
-        tag: "Familia",
+        author: "Marta (Vecina)",
+        body: "Verlos jugar los domingos es la alegría de la cuadra. Nunca cambien.",
+        likes: 89,
+    },
+    {
+        author: "Lucas D.",
+        body: "Cuando mi viejo falleció, los pibes del club fueron los únicos que estuvieron ahí. Eso no se olvida.",
+        likes: 203,
     },
 ];
 ---
 
-<Layout title="LDS FC | La Tribu">
-    <main class="max-w-6xl mx-auto px-6 pt-32 pb-20">
-        <h1 class="font-heading text-6xl md:text-8xl text-white uppercase mb-4">
-            La Tribu
-        </h1>
-        <p class="text-xl text-neutral-400 mb-16 max-w-2xl">
-            Historias reales de gente real. Aquí no juzgamos, aquí escuchamos.
-        </p>
+<Layout title="LDS FC | La Tribuna">
+    <main class="max-w-6xl mx-auto px-6 pt-32 pb-20 overflow-hidden">
+        
+        <!-- HEADER SECTION -->
+        <div class="relative mb-24 text-center">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-            <!-- New Post Card -->
-            <div
-                class="border border-dashed border-white/20 p-8 rounded-sm flex flex-col items-center justify-center text-center hover:bg-white/5 transition-colors cursor-pointer min-h-[300px]"
-            >
-                <MessageSquare
-                    size={48}
-                    className="text-[var(--color-neon-cyan)] mb-4"
-                />
-                <h3 class="font-heading text-xl text-white uppercase mb-2">
-                    Cuenta tu historia
-                </h3>
-                <p class="text-sm text-neutral-500">
-                    Lo que escribas aquí queda en la familia.
-                </p>
-            </div>
-
-            {
-                stories.map((s) => (
-                    <div class="bg-[#1a1a1a] p-8 rounded-sm relative group overflow-hidden">
-                        <div class="absolute top-0 right-0 p-2 opacity-50">
-                            <span class="text-[10px] font-mono border border-white/20 px-2 py-1 rounded-full uppercase">
-                                {s.tag}
-                            </span>
-                        </div>
-                        <p class="font-graffiti text-white/10 text-6xl absolute -bottom-4 -right-4 rotate-12 select-none">
-                            LDS
-                        </p>
-
-                        <h3 class="font-heading text-2xl text-white mb-4">
-                            "{s.title}"
-                        </h3>
-                        <p class="text-neutral-400 leading-relaxed mb-6 font-light">
-                            {s.body}
-                        </p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <span class="font-bold text-[var(--color-neon-cyan)] text-sm uppercase">
-                                {s.author}
-                            </span>
-                            <button class="text-neutral-600 hover:text-white transition-colors flex items-center gap-1">
-                                <ThumbsUp size={14} />{" "}
-                                <span class="text-xs">Respeto</span>
-                            </button>
-                        </div>
-                    </div>
-                ))
-            }
-        </div>
-
-        <div class="bg-white/5 border-l-4 border-[var(--color-neon-cyan)] p-8">
-            <h2 class="font-heading text-3xl text-white mb-4">
-                La Voz del Barrio
-            </h2>
-            <div class="flex flex-col md:flex-row gap-8">
-                <div class="flex-1">
-                    <p class="text-neutral-400 mb-4">
-                        Propuesta de la semana: <strong class="text-white"
-                            >"Jornada de limpieza en la plaza"</strong
-                        >
-                    </p>
-                    <div
-                        class="w-full bg-white/10 h-2 rounded-full overflow-hidden"
-                    >
-                        <div class="bg-[var(--color-neon-cyan)] h-full w-[70%]">
-                        </div>
-                    </div>
-                    <div
-                        class="flex justify-between text-xs font-mono mt-2 text-neutral-500"
-                    >
-                        <span>70% APOYO</span>
-                        <span>30% NO</span>
-                    </div>
+            <!-- Foreground "LA TRIBUNA" -->
+            <div class="relative z-10 inline-block">
+                <h1 class="font-graffiti md:text-9xl leading-none uppercase tracking-tighter relative">
+                    LA TRIBUNA
+                </h1>
+                
+                <!-- #LDS_OFFICIAL Sticker -->
+                <div class="absolute -bottom-4 right-0 md:-right-12 bg-white text-black font-graffiti text-lg md:text-xl px-4 py-1 transform -rotate-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
+                    #LDS_OFFICIAL
                 </div>
-                <button
-                    class="px-6 py-3 bg-white text-black font-bold uppercase hover:bg-neutral-200 transition-colors"
-                    >Votar</button
-                >
             </div>
         </div>
+
+        <!-- MURO DE LOS LAMENTOS SECTION -->
+        <section class="max-w-4xl mx-auto relative">
+            <!-- CARDS GRID -->
+            <div class="space-y-12">
+                {stories.map((s) => (
+                    <div class="relative group">
+                        <!-- Red Pin -->
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 z-20 w-6 h-6 rounded-full bg-[#E63946] border-2 border-[rgba(0,0,0,0.2)] shadow-md"></div>
+                        
+                        <!-- Paper Card -->
+                        <div class="bg-[#f0f0f0] p-8 md:p-10 shadow-xl transform transition-transform duration-300 hover:scale-[1.01] hover:rotate-1 relative z-10 paper-texture box-shadow-paper">
+                            <p class=" text-2xl md:text-3xl text-black leading-normal mb-8 uppercase">
+                                "{s.body}"
+                            </p>
+                            
+                            <div class="flex items-center justify-between border-t border-black/10 pt-4">
+                                <span class="font-heading text-xl text-black uppercase">
+                                    {s.author}
+                                </span>
+                                <div class="flex items-center gap-2 text-[#E63946] font-bold font-mono">
+                                    <Heart size={18} fill="currentColor" />
+                                    <span>{s.likes}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- CREATE POST BUTTON -->
+            <div class="mt-20 flex justify-center">
+                <a href="#post" class="group relative inline-block">
+                    <div class="absolute inset-0 bg-[var(--color-neon-cyan)] transform translate-x-2 translate-y-2 transition-transform group-hover:translate-x-3 group-hover:translate-y-3"></div>
+                    <div class="relative bg-black border-2 border-[var(--color-neon-cyan)] px-8 py-4 flex items-center gap-4">
+                        <MessageSquare className="text-[var(--color-neon-cyan)]" />
+                        <span class="font-heading text-2xl text-white uppercase">Dejar mi mensaje</span>
+                    </div>
+                </a>
+            </div>
+
+        </section>
     </main>
 </Layout>
+
+<style>
+    .paper-texture {
+        background-color: #f0f0f0;
+        background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .box-shadow-paper {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    }
+</style>

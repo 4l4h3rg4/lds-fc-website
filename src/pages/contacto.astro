@@ -1,115 +1,279 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Mail, MapPin, Instagram, Phone } from "lucide-react";
+import { Mail, MapPin, Instagram } from "lucide-react";
+
+const reasons = [
+    "Quiero jugar",
+    "Quiero alentar",
+    "Propuesta comercial",
+    "Otro",
+];
 ---
 
-<Layout title="LDS FC | Hablemos Claro">
-    <main class="max-w-4xl mx-auto px-6 pt-32 pb-20">
-        <h1
-            class="font-heading text-6xl md:text-8xl text-white uppercase mb-4 text-center"
-        >
-            Hablemos Claro
-        </h1>
-        <p class="text-xl text-neutral-400 mb-16 text-center">
-            Si llegaste hasta acá, algo te movió. Escríbenos.
-        </p>
+<Layout title="LDS FC | Contacto">
+    <main
+        class="min-h-screen flex flex-col items-center justify-center px-4 py-20 bg-[#0a0a0a] relative overflow-hidden"
+    >
+        <!-- HEADER -->
+        <div class="relative z-10 mb-12 text-center">
+            <h1
+                class="font-graffiti text-7xl md:text-9xl uppercase tracking-tighter leading-none relative inline-block"
+            >
+                CONTACTO
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <!-- Form -->
-            <form class="space-y-6">
-                <div>
-                    <label
-                        class="block font-bold text-white uppercase text-sm mb-2"
-                        >Nombre / Apodo</label
-                    >
-                    <input
-                        type="text"
-                        class="w-full bg-white/5 border border-white/20 p-4 text-white focus:outline-none focus:border-[var(--color-neon-cyan)] transition-colors"
-                        placeholder="¿Cómo te dicen?"
-                    />
-                </div>
-                <div>
-                    <label
-                        class="block font-bold text-white uppercase text-sm mb-2"
-                        >Motivo</label
-                    >
-                    <select
-                        class="w-full bg-white/5 border border-white/20 p-4 text-white focus:outline-none focus:border-[var(--color-neon-cyan)] transition-colors appearance-none"
-                    >
-                        <option>Quiero entrenar</option>
-                        <option>Quiero colaborar</option>
-                        <option>Prensa / Media</option>
-                        <option>Solo saludar</option>
-                    </select>
-                </div>
-                <div>
-                    <label
-                        class="block font-bold text-white uppercase text-sm mb-2"
-                        >Mensaje</label
-                    >
-                    <textarea
-                        rows="5"
-                        class="w-full bg-white/5 border border-white/20 p-4 text-white focus:outline-none focus:border-[var(--color-neon-cyan)] transition-colors"
-                        placeholder="Suelta el rollo..."></textarea>
-                </div>
-                <button
-                    class="w-full py-4 bg-[var(--color-neon-cyan)] text-black font-heading font-bold text-xl uppercase hover:bg-[#eac400] transition-colors"
+                <!-- #LDS_OFFICIAL Sticker -->
+                <div
+                    class="absolute -bottom-2 right-0 bg-white text-black font-graffiti text-sm px-2 py-0.5 transform -rotate-3 border border-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
                 >
-                    Enviar Mensaje
-                </button>
-            </form>
+                    #LDS_OFFICIAL
+                </div>
+            </h1>
+        </div>
 
-            <!-- Info -->
-            <div class="space-y-8 md:pl-8 md:border-l border-white/10">
-                <div>
-                    <h3 class="font-heading text-2xl text-white mb-4">
-                        Coordenadas
-                    </h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4 text-neutral-400">
-                            <MapPin className="text-[var(--color-neon-cyan)]" />
-                            <span
-                                >La Cancha, Sector 4. <br />Pregunta por "El
-                                Colo".</span
+        <div
+            class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start"
+        >
+            <!-- FORM COLUMN -->
+            <div class="relative w-full">
+                <!-- Cyan Background Offset -->
+                <div
+                    class="absolute top-4 -right-4 w-full h-full bg-[var(--color-neon-cyan)] -z-10 hidden md:block"
+                >
+                </div>
+
+                <!-- Main Form Card -->
+                <div
+                    class="bg-[#050505] border-2 border-white p-8 md:p-12 relative shadow-2xl"
+                >
+                    <form class="space-y-8" id="contact-form">
+                        <!-- Name Input -->
+                        <div class="space-y-2">
+                            <label
+                                class="block font-heading text-white text-xl uppercase tracking-wide"
                             >
+                                ¿Cuál es tu nombre?
+                            </label>
+                            <input
+                                id="name-input"
+                                type="text"
+                                placeholder="Nombre o Apodo"
+                                class="w-full bg-[#1a1a1a] border-none text-neutral-300 p-4 font-mono focus:ring-2 focus:ring-[var(--color-neon-cyan)] focus:outline-none placeholder:text-neutral-600"
+                                required
+                            />
                         </div>
-                        <div class="flex items-center gap-4 text-neutral-400">
-                            <Mail className="text-[var(--color-neon-cyan)]" />
-                            <span>contacto@lds-fc.com</span>
+
+                        <!-- Select Input -->
+                        <div class="space-y-2">
+                            <label
+                                class="block font-heading text-white text-xl uppercase tracking-wide"
+                            >
+                                ¿Cual es tu motivo?
+                            </label>
+                            <div class="relative">
+                                <select
+                                    id="reason-select"
+                                    class="w-full bg-[#1a1a1a] border-none text-neutral-300 p-4 font-mono focus:ring-2 focus:ring-[var(--color-neon-cyan)] focus:outline-none appearance-none cursor-pointer"
+                                >
+                                    {reasons.map((r) => <option>{r}</option>)}
+                                </select>
+                                <!-- Custom Arrow -->
+                                <div
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none"
+                                >
+                                    ▼
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-4 text-neutral-400">
-                            <Phone className="text-[var(--color-neon-cyan)]" />
-                            <span>+56 9 1234 5678</span>
+
+                        <!-- Message Input -->
+                        <div class="space-y-2">
+                            <label
+                                class="block font-heading text-white text-xl uppercase tracking-wide"
+                            >
+                                danos más detalles
+                            </label>
+                            <textarea
+                                id="message-input"
+                                rows="4"
+                                placeholder="..."
+                                class="w-full bg-[#1a1a1a] border-none text-neutral-300 p-4 font-mono focus:ring-2 focus:ring-[var(--color-neon-cyan)] focus:outline-none placeholder:text-neutral-600 resize-none"
+                            ></textarea>
+                            <p
+                                id="word-count"
+                                class="text-right text-xs text-neutral-500 font-mono"
+                            >
+                                0 / 500 palabras
+                            </p>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button
+                            class="w-full bg-[var(--color-neon-cyan)] text-black font-heading text-2xl uppercase py-4 hover:bg-[#22d3ee] transition-colors shadow-[0_0_20px_rgba(34,211,238,0.3)]"
+                        >
+                            ENVIAR MENSAJE
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- INFO / SIDEBAR COLUMN -->
+            <div class="space-y-8 pt-8 lg:pt-0">
+                <!-- CONTACT INFO BOX -->
+                <div
+                    class="border-2 border-white p-8 md:p-10 relative bg-[#050505] shadow-[0_0_30px_rgba(34,211,238,0.1)]"
+                >
+                    <h3
+                        class="font-heading text-3xl text-white uppercase mb-10 tracking-wide"
+                    >
+                        Otras formas de contacto
+                    </h3>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6 group">
+                            <Mail className="text-white mt-1 w-6 h-6" />
+                            <div>
+                                <h4
+                                    class="font-bold text-white uppercase tracking-wider mb-1"
+                                >
+                                    EMAIL
+                                </h4>
+                                <a
+                                    href="mailto:contacto@ldsfc.com"
+                                    class="text-neutral-400 font-mono hover:text-[var(--color-neon-cyan)] transition-colors"
+                                >
+                                    contacto@ldsfc.com
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-6 group">
+                            <MapPin className="text-white mt-1 w-6 h-6" />
+                            <div>
+                                <h4
+                                    class="font-bold text-white uppercase tracking-wider mb-1"
+                                >
+                                    DÓNDE ESTAMOS
+                                </h4>
+                                <p
+                                    class="text-neutral-400 font-mono text-[var(--color-neon-cyan)]"
+                                >
+                                    El Barrio, Ciudad
+                                </p>
+                                <p
+                                    class="text-neutral-600 font-mono text-sm mt-1"
+                                >
+                                    (La ubicación exacta la compartimos por
+                                    mensaje)
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="font-heading text-2xl text-white mb-4">Redes</h3>
+                <!-- REDES BOX -->
+                <div class="border-2 border-[#1a1a1a] p-8 md:p-10 bg-[#0a0a0a]">
+                    <h3
+                        class="font-heading text-3xl text-white uppercase mb-6 tracking-wide"
+                    >
+                        REDES
+                    </h3>
                     <div class="flex gap-4">
                         <a
                             href="#"
-                            class="h-12 w-12 bg-white/5 flex items-center justify-center hover:bg-[var(--color-neon-cyan)] hover:text-black transition-colors rounded-full"
+                            class="w-16 h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
                         >
-                            <Instagram />
+                            <Instagram size={32} />
                         </a>
                         <a
                             href="#"
-                            class="h-12 w-12 bg-white/5 flex items-center justify-center hover:bg-[var(--color-neon-cyan)] hover:text-black transition-colors rounded-full"
+                            class="w-16 h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
                         >
-                            <span class="font-bold">X</span>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-brand-tiktok"
+                                width="32"
+                                height="32"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"></path>
+                                <path
+                                    d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917"
+                                ></path>
+                            </svg>
                         </a>
                     </div>
-                </div>
-
-                <div
-                    class="p-6 bg-white/5 border border-white/10 rounded-sm mt-8"
-                >
-                    <p class="font-graffiti text-white text-center rotate-1">
-                        "Aquí la lealtad vale más que cualquier gol."
-                    </p>
                 </div>
             </div>
         </div>
     </main>
 </Layout>
+
+<script>
+    const form = document.getElementById("contact-form") as HTMLFormElement;
+    const nameInput = document.getElementById("name-input") as HTMLInputElement;
+    const reasonSelect = document.getElementById(
+        "reason-select",
+    ) as HTMLSelectElement;
+    const messageInput = document.getElementById(
+        "message-input",
+    ) as HTMLTextAreaElement;
+    const wordCountDisplay = document.getElementById("word-count");
+
+    // WhatsApp Phone Number (Placeholder)
+    const PHONE_NUMBER = "5491112345678"; // TODO: Replace with actual number
+
+    // Word Count Validation
+    messageInput?.addEventListener("input", () => {
+        const text = messageInput.value.trim();
+        const words = text ? text.split(/\s+/).length : 0;
+
+        if (wordCountDisplay) {
+            wordCountDisplay.textContent = `${words} / 500 palabras`;
+            if (words > 500) {
+                wordCountDisplay.classList.add("text-red-500");
+                wordCountDisplay.classList.remove("text-neutral-500");
+            } else {
+                wordCountDisplay.classList.remove("text-red-500");
+                wordCountDisplay.classList.add("text-neutral-500");
+            }
+        }
+    });
+
+    form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = nameInput?.value;
+        const reason = reasonSelect?.value;
+        const message = messageInput?.value;
+
+        // Check word count
+        const words = message ? message.trim().split(/\s+/).length : 0;
+        if (words > 500) {
+            alert("El mensaje no puede superar las 500 palabras.");
+            return;
+        }
+
+        if (!name || !reason || !message) {
+            alert("Por favor completá todos los campos.");
+            return;
+        }
+
+        // Construct Message
+        // "hola soy {nombre ingresado} te hablo por {motivo seleccionado} {mensaje escrito en detalles}"
+        const formattedMessage = `Hola soy ${name}, te hablo por ${reason}. ${message}`;
+
+        // Encode and Redirect
+        const encodedMessage = encodeURIComponent(formattedMessage);
+        const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`;
+
+        window.open(whatsappUrl, "_blank");
+    });
+</script>

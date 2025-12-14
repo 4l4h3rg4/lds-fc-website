@@ -14,7 +14,6 @@ const MENU_ITEMS = [
     { label: 'Entrenamientos', href: '/entrenamientos', icon: MapPin },
     { label: 'Comunidad', href: '/comunidad', icon: Users },
     { label: 'Tienda', href: '/tienda', icon: Shirt },
-    { label: 'Social', href: '/social', icon: Heart },
     { label: 'Contacto', href: '/contacto', icon: MessageCircle },
 ];
 
