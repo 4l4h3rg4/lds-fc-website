@@ -1,9 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Calendar, MapPin, Clock } from "lucide-react";
+import { Calendar, MapPin, Clock, ChevronDown } from "lucide-react";
 
-const matches = [
+interface Player {
+    name: string;
+    goals?: number;
+}
+
+interface Match {
+    id: string;
+    type: string;
+    date: string;
+    time: string;
+    rival: string;
+    place: string;
+    result: string | null;
+    status: "NEXT" | "WON" | "DRAW" | "LOST";
+    squad: {
+        starters: Player[];
+        bench: Player[];
+    };
+}
+
+const matches: Match[] = [
     {
+        id: "m1",
         type: "TORNEO",
         date: "12 DIC",
         time: "14:00",
@@ -11,8 +32,21 @@ const matches = [
         place: "Cancha Norte",
         result: null,
         status: "NEXT",
+        squad: {
+            starters: [
+                { name: "Muro" },
+                { name: "Capi" },
+                { name: "El Tanque" },
+                { name: "Zurdo" },
+                { name: "La Pulga" },
+                { name: "Rayo" },
+                { name: "El Mago" },
+            ],
+            bench: [{ name: "Loco" }, { name: "Chino" }, { name: "Pela" }],
+        },
     },
     {
+        id: "m2",
         type: "AMISTOSO",
         date: "05 DIC",
         time: "20:00",
@@ -20,8 +54,21 @@ const matches = [
         place: "Sede Central",
         result: "3 - 1",
         status: "WON",
+        squad: {
+            starters: [
+                { name: "Muro" },
+                { name: "Capi" },
+                { name: "El Tanque", goals: 1 },
+                { name: "Zurdo" },
+                { name: "La Pulga", goals: 2 },
+                { name: "Rayo" },
+                { name: "El Mago" },
+            ],
+            bench: [{ name: "Loco" }, { name: "Chino" }],
+        },
     },
     {
+        id: "m3",
         type: "TORNEO",
         date: "28 NOV",
         time: "16:00",
@@ -29,6 +76,18 @@ const matches = [
         place: "Estadio Muni",
         result: "1 - 1",
         status: "DRAW",
+        squad: {
+            starters: [
+                { name: "Muro" },
+                { name: "Capi" },
+                { name: "El Tanque" },
+                { name: "Zurdo" },
+                { name: "La Pulga", goals: 1 },
+                { name: "Rayo" },
+                { name: "El Mago" },
+            ],
+            bench: [{ name: "Loco" }, { name: "Chino" }],
+        },
     },
 ];
 ---
@@ -36,73 +95,132 @@ const matches = [
 <Layout title="LDS FC | Partidos">
     <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
         <h1
-            class="font-heading text-6xl md:text-8xl text-white uppercase mb-16"
+            class="font-graffiti text-6xl md:text-8xl text-white uppercase mb-16"
         >
-            La Fecha
+            Partidos
         </h1>
 
         <div class="space-y-6">
             {
                 matches.map((m) => (
                     <div
-                        class={`relative group border ${m.status === "NEXT" ? "border-[var(--color-neon-cyan)] bg-[var(--color-neon-cyan)]/5" : "border-white/10 bg-white/5"} p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 overflow-hidden transition-all hover:border-[var(--color-neon-cyan)]/50`}
+                        class={`match-card group relative border ${m.status === "NEXT" ? "border-[var(--color-neon-cyan)] bg-[var(--color-neon-cyan)]/5" : "border-white/10 bg-white/5"} overflow-hidden transition-all hover:border-[var(--color-neon-cyan)]/50 cursor-pointer`}
+                        data-match-id={m.id}
                     >
-                        {/* Status Strip */}
-                        <div
-                            class={`absolute left-0 top-0 bottom-0 w-1 ${
-                                m.status === "NEXT"
-                                    ? "bg-[var(--color-neon-cyan)]"
-                                    : m.status === "WON"
-                                      ? "bg-green-500"
-                                      : "bg-neutral-500"
-                            }`}
-                        />
+                        {/* Header Content */}
+                        <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+                            {/* Status Strip */}
+                            <div
+                                class={`absolute left-0 top-0 bottom-0 w-1 ${
+                                    m.status === "NEXT"
+                                        ? "bg-[var(--color-neon-cyan)]"
+                                        : m.status === "WON"
+                                          ? "bg-green-500"
+                                          : m.status === "LOST"
+                                            ? "bg-red-500"
+                                            : "bg-neutral-500"
+                                }`}
+                            />
 
-                        <div class="flex flex-col md:flex-row gap-6 md:items-center min-w-[200px]">
-                            <div class="text-center md:text-left">
-                                <span class="block font-heading text-3xl md:text-4xl text-white">
-                                    {m.date}
+                            <div class="flex flex-col md:flex-row gap-6 md:items-center min-w-[200px]">
+                                <div class="text-center md:text-left">
+                                    <span class="block font-heading text-3xl md:text-4xl text-white">
+                                        {m.date}
+                                    </span>
+                                    <span class="block font-mono text-sm text-neutral-500">
+                                        {m.type}
+                                    </span>
+                                </div>
+                                <div class="hidden md:block h-10 w-px bg-white/10" />
+                                <div class="flex items-center gap-2 text-neutral-400">
+                                    <Clock size={16} />
+                                    <span class="font-mono text-sm">
+                                        {m.time} HS
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 w-full">
+                                <span class="font-heading text-2xl md:text-3xl text-white">
+                                    LDS FC
                                 </span>
-                                <span class="block font-mono text-sm text-neutral-500">
-                                    {m.type}
+                                <span class="font-mono text-xl text-neutral-600">
+                                    VS
+                                </span>
+                                <span class="font-heading text-2xl md:text-3xl text-neutral-300">
+                                    {m.rival}
                                 </span>
                             </div>
-                            <div class="hidden md:block h-10 w-px bg-white/10" />
-                            <div class="flex items-center gap-2 text-neutral-400">
-                                <Clock size={16} />
-                                <span class="font-mono text-sm">
-                                    {m.time} HS
-                                </span>
+
+                            <div class="flex flex-col items-end min-w-[150px]">
+                                {m.result ? (
+                                    <span class="font-heading text-4xl text-[var(--color-neon-cyan)]">
+                                        {m.result}
+                                    </span>
+                                ) : (
+                                    <span class="font-heading text-xl text-white bg-[var(--color-neon-cyan)]/20 px-3 py-1 rounded-sm border border-[var(--color-neon-cyan)]/30 animate-pulse">
+                                        PRÓXIMO
+                                    </span>
+                                )}
+                                <div class="flex items-center gap-1 mt-2 text-neutral-500">
+                                    <MapPin size={12} />
+                                    <span class="text-[10px] uppercase">
+                                        {m.place}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="absolute right-4 bottom-4 md:static md:ml-4 text-white/20 group-hover:text-[var(--color-neon-cyan)] transition-colors">
+                                <ChevronDown className="transform transition-transform duration-300 chevron-icon" />
                             </div>
                         </div>
 
-                        <div class="flex-1 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 w-full">
-                            <span class="font-heading text-2xl md:text-3xl text-white">
-                                LDS FC
-                            </span>
-                            <span class="font-mono text-xl text-neutral-600">
-                                VS
-                            </span>
-                            <span class="font-heading text-2xl md:text-3xl text-neutral-300">
-                                {m.rival}
-                            </span>
-                        </div>
+                        {/* Details Section (Hidden by default) */}
+                        <div class="match-details grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out border-t border-white/5 bg-black/20">
+                            <div class="overflow-hidden">
+                                <div class="p-6 md:p-8 flex flex-col md:flex-row gap-12">
+                                    {/* Starters */}
+                                    <div class="flex-1">
+                                        <h3 class="font-mono text-[var(--color-neon-cyan)] text-sm tracking-widest uppercase mb-4 opacity-80">
+                                            Titulares
+                                        </h3>
+                                        <ul class="space-y-2">
+                                            {m.squad.starters.map((player) => (
+                                                <li class="flex items-center justify-between text-white border-b border-white/5 pb-2 last:border-0">
+                                                    <span class="font-heading text-xl uppercase tracking-wide">
+                                                        {player.name}
+                                                    </span>
+                                                    {player.goals && (
+                                                        <span class="flex items-center gap-1 text-[var(--color-neon-cyan)] font-mono text-sm">
+                                                            ⚽ x{player.goals}
+                                                        </span>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
 
-                        <div class="flex flex-col items-end min-w-[150px]">
-                            {m.result ? (
-                                <span class="font-heading text-4xl text-[var(--color-neon-cyan)]">
-                                    {m.result}
-                                </span>
-                            ) : (
-                                <span class="font-heading text-xl text-white bg-[var(--color-neon-cyan)]/20 px-3 py-1 rounded-sm border border-[var(--color-neon-cyan)]/30 animate-pulse">
-                                    PRÓXIMO
-                                </span>
-                            )}
-                            <div class="flex items-center gap-1 mt-2 text-neutral-500">
-                                <MapPin size={12} />
-                                <span class="text-[10px] uppercase">
-                                    {m.place}
-                                </span>
+                                    {/* Bench */}
+                                    <div class="flex-1">
+                                        <h3 class="font-mono text-neutral-500 text-sm tracking-widest uppercase mb-4">
+                                            Banca
+                                        </h3>
+                                        <ul class="space-y-2">
+                                            {m.squad.bench.map((player) => (
+                                                <li class="flex items-center justify-between text-neutral-400 border-b border-white/5 pb-2 last:border-0">
+                                                    <span class="font-heading text-xl uppercase tracking-wide">
+                                                        {player.name}
+                                                    </span>
+                                                    {player.goals && (
+                                                        <span class="flex items-center gap-1 text-[var(--color-neon-cyan)] font-mono text-sm">
+                                                            ⚽ x{player.goals}
+                                                        </span>
+                                                    )}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -110,4 +228,41 @@ const matches = [
             }
         </div>
     </main>
+
+    <script>
+        document.addEventListener("astro:page-load", () => {
+            setupMatches();
+        });
+
+        setupMatches();
+
+        function setupMatches() {
+            const cards = document.querySelectorAll(".match-card");
+            cards.forEach((card) => {
+                card.addEventListener("click", () => {
+                    const details = card.querySelector(".match-details");
+                    const icon = card.querySelector(".chevron-icon");
+
+                    // Close other open cards (optional, for accordion style)
+                    // cards.forEach(c => {
+                    //     if(c !== card) {
+                    //         c.querySelector('.match-details')?.classList.remove('grid-rows-[1fr]');
+                    //         c.querySelector('.match-details')?.classList.add('grid-rows-[0fr]');
+                    //         c.querySelector('.chevron-icon')?.classList.remove('rotate-180');
+                    //     }
+                    // });
+
+                    if (details?.classList.contains("grid-rows-[0fr]")) {
+                        details.classList.remove("grid-rows-[0fr]");
+                        details.classList.add("grid-rows-[1fr]");
+                        icon?.classList.add("rotate-180");
+                    } else {
+                        details?.classList.add("grid-rows-[0fr]");
+                        details?.classList.remove("grid-rows-[1fr]");
+                        icon?.classList.remove("rotate-180");
+                    }
+                });
+            });
+        }
+    </script>
 </Layout>
