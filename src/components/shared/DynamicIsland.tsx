@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useStore } from '@nanostores/react';
-import { $islandState, $notificationData, type IslandState } from '../lib/store';
+import { $islandState, $notificationData, type IslandState } from '../../lib/store';
 import { Bell, Menu, X, Calendar, MapPin, Shirt, Users, Heart, MessageCircle } from 'lucide-react';
 
 const SPRING_CONFIG = { type: 'spring', stiffness: 350, damping: 30 };
 
 const MENU_ITEMS = [
     { label: 'El Rugido', href: '/', icon: Heart },
-    { label: 'Historia', href: '/historia', icon: Calendar },
+    { label: 'MANIFIESTO', href: '/manifiesto', icon: Calendar },
     { label: 'Plantel', href: '/plantel', icon: Users },
     { label: 'Partidos', href: '/partidos', icon: Calendar },
     { label: 'Entrenamientos', href: '/entrenamientos', icon: MapPin },
@@ -58,7 +58,7 @@ export default function DynamicIsland() {
                                 onClick={toggleMenu}
                             >
                                 <div className="flex items-center gap-2">
-                                    <div className="h-2 w-2 rounded-full bg-[#FFD700] animate-pulse" />
+                                    <div className="h-2 w-2 rounded-full bg-[var(--color-neon-cyan)] animate-pulse" />
                                     <span className="text-xs font-bold uppercase tracking-wider text-neutral-300">Prox. Partido</span>
                                 </div>
                                 <span className="text-[10px] text-neutral-500 font-mono">DOM 12:00</span>
@@ -74,7 +74,7 @@ export default function DynamicIsland() {
                                 className="w-full p-4 flex items-center gap-3 cursor-pointer"
                                 onClick={() => $notificationData.set(null)}
                             >
-                                <div className="h-8 w-8 rounded-full bg-[#FFD700]/20 flex items-center justify-center text-[#FFD700]">
+                                <div className="h-8 w-8 rounded-full bg-[#22d3ee]/20 flex items-center justify-center text-[var(--color-neon-cyan)]">
                                     <Bell size={16} />
                                 </div>
                                 <div className="flex-1">
@@ -93,7 +93,7 @@ export default function DynamicIsland() {
                                 className="w-full p-6 flex flex-col gap-4"
                             >
                                 <div className="flex justify-between items-center w-full border-b border-white/10 pb-4">
-                                    <span className="font-heading text-lg text-[#FFD700]">MENÚ LDS</span>
+                                    <span className="font-heading text-lg text-[var(--color-neon-cyan)]">MENÚ LDS</span>
                                     <button onClick={toggleMenu} className="p-1 hover:bg-white/10 rounded-full transition-colors">
                                         <X size={20} />
                                     </button>
@@ -104,7 +104,7 @@ export default function DynamicIsland() {
                                         <a
                                             key={item.href}
                                             href={item.href}
-                                            className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-[#FFD700] hover:text-black transition-all group"
+                                            className="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all group"
                                             onClick={() => setInternalExpanded(false)}
                                         >
                                             <item.icon size={20} className="opacity-70 group-hover:opacity-100" />

@@ -1,84 +1,95 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { ArrowRight, Zap, Shield, Globe } from "lucide-react";
-import MatchCard from "../components/MatchCard.astro";
-import QuoteSection from "../components/QuoteSection.astro";
-import FeatureCard from "../components/FeatureCard.astro";
-import Footer from "../components/Footer.astro";
+import MatchCard from "../components/home/MatchCard.astro";
+import QuoteSection from "../components/home/QuoteSection.astro";
+import FeatureCard from "../components/home/FeatureCard.astro";
+import Footer from "../components/shared/Footer.astro";
 ---
 
 <Layout title="LDS FC | El Rugido">
 	<main class="w-full relative">
 		<!-- Hero Section -->
 		<div
-			class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
+			class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden"
 		>
-			<!-- Hero Text -->
+			<!-- Background Image -->
+			<div class="absolute inset-0 z-0">
+				<img
+					src="/bg-hero.png"
+					alt="Hero Background"
+					class="w-full h-full object-cover opacity-80"
+				/>
+				<div class="absolute inset-0 bg-black/60"></div>
+			</div>
+
+			<!-- Content Z-Index -->
 			<div
-				class="relative z-10 flex flex-col items-center text-center px-6"
+				class="relative z-10 flex flex-col items-center justify-center -mt-20"
 			>
-				<div
-					class="mb-4 overflow-hidden rounded-full border border-[var(--color-neon-cyan)]/30 bg-[var(--color-neon-cyan)]/10 backdrop-blur-sm px-4 py-1.5 animate-fade-in-up"
-				>
-					<span
-						class="text-xs font-bold tracking-widest text-[var(--color-neon-cyan)] uppercase"
-						>Manifiesto Oficial</span
+				<!-- Logo -->
+				<img
+					src="/logo LDS FC.png"
+					alt="LDS FC Logo"
+					class="h-24 md:h-32 mb-8 drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+				/>
+
+				<!-- Main Title with Glow and Sticker -->
+				<div class="relative mb-6 text-center">
+					<h1
+						class="font-graffiti text-[120px] md:text-[180px] leading-[0.8] tracking-normal text-white drop-shadow-[5px_5px_0px_rgba(0,0,0,0.5)] transform -rotate-2 mix-blend-normal opacity-100"
 					>
+						L.D.S FC
+					</h1>
 				</div>
 
-				<h1
-					class="text-6xl md:text-9xl font-heading font-bold tracking-tighter uppercase leading-[0.8] mb-6 text-white mix-blend-overlay opacity-90 animate-fade-in-up delay-100"
-				>
-					El que<br />
-					<span
-						class="text-transparent bg-clip-text bg-gradient-to-b from-[var(--color-neon-cyan)] to-[var(--color-brand-blue)]"
-						>abandona</span
-					><br />
-					pierde.
-				</h1>
-
-				<!-- Graffiti Layer -->
+				<!-- Subtext with bullets -->
 				<div
-					class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1] w-full max-w-lg opacity-20 pointer-events-none"
+					class="flex items-center gap-4 text-[var(--color-neon-cyan)] uppercase tracking-[0.5em] md:tracking-[0.8em] font-light text-xs md:text-sm mb-12"
 				>
-					<p
-						class="font-graffiti text-9xl text-white rotate-[-12deg] whitespace-nowrap blur-[2px]"
-					>
-						LDS FC
-					</p>
+					<span>El que abandona pierde</span>
 				</div>
 
-				<p
-					class="text-lg md:text-2xl font-light text-neutral-400 max-w-xl mb-12 animate-fade-in-up delay-200"
-				>
-					No es fútbol. Es familia. Es barrio. Es rugido.
-					<span
-						class="block font-graffiti text-[var(--color-neon-cyan)] mt-2 rotate-2"
-						>"Somos Los De Siempre"</span
-					>
-				</p>
-
-				<div
-					class="flex flex-col md:flex-row gap-4 animate-fade-in-up delay-300 w-full max-w-md"
-				>
+				<!-- Buttons -->
+				<div class="flex flex-col md:flex-row gap-6">
 					<a
-						href="/comunidad"
-						class="group relative px-8 py-4 bg-[var(--color-neon-cyan)] text-black font-heading font-bold text-xl uppercase tracking-wider clip-path-slope hover:bg-[var(--color-brand-blue)] hover:text-white transition-colors flex items-center justify-center gap-2"
+						href="#plantel"
+						class="px-8 py-3 bg-white text-black font-heading uppercase tracking-widest text-sm hover:scale-105 transition-transform"
 					>
-						Ser del Círculo
-						<ArrowRight
-							size={24}
-							className="group-hover:translate-x-1 transition-transform"
-						/>
+						La Familia
 					</a>
 					<a
-						href="/historia"
-						class="px-8 py-4 border border-white/20 hover:bg-white/5 font-heading font-medium text-lg uppercase tracking-wider text-white transition-colors flex items-center justify-center"
+						href="#partidos"
+						class="px-8 py-3 bg-black text-white border border-white font-heading uppercase tracking-widest text-sm hover:bg-white hover:text-black transition-colors"
 					>
-						Leer Manifiesto
+						La Fecha
 					</a>
 				</div>
 			</div>
+
+			<!-- Bottom Banner (Scrolling) -->
+			<div
+				class="absolute bottom-0 w-full bg-[var(--color-neon-cyan)] text-black py-2 overflow-hidden border-t-2 border-black z-30"
+			>
+				<div
+					class="animate-marquee whitespace-nowrap flex gap-12 font-heading uppercase tracking-widest text-sm font-bold"
+				>
+					<!-- Content duplicated for seamless loop -->
+					<span
+						>+++ EL QUE ABANDONA PIERDE +++ NACIDOS EN EL BARRO +++
+						UN CÍRCULO QUE NO SE ROMPE +++ MÁS QUE LOS MINUTOS +++
+						SUDOR Y GLORIA +++ LA FAMILIA SE CONSTRUYE +++ SOMOS LOS
+						DE SIEMPRE</span
+					>
+					<span
+						>+++ EL QUE ABANDONA PIERDE +++ NACIDOS EN EL BARRO +++
+						UN CÍRCULO QUE NO SE ROMPE +++ MÁS QUE LOS MINUTOS +++
+						SUDOR Y GLORIA +++ LA FAMILIA SE CONSTRUYE +++ SOMOS LOS
+						DE SIEMPRE</span
+					>
+				</div>
+			</div>
+		</div>
 
 		<!-- Match Section -->
 		<section class="py-24 px-6 md:px-12 relative z-10">
@@ -89,7 +100,9 @@ import Footer from "../components/Footer.astro";
 					<span class="text-neutral-600">LA</span> FECHA
 				</h2>
 
-				<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+				<div
+					class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 w-full max-w-6xl px-4"
+				>
 					<MatchCard
 						variant="neutral"
 						label="Ultimo Resultado"
@@ -100,6 +113,7 @@ import Footer from "../components/Footer.astro";
 						date="8 de Diciembre, 2024"
 						location="Cancha Municipal"
 						isResult={true}
+						rotation="left"
 					/>
 					<MatchCard
 						variant="cyan"
@@ -109,6 +123,7 @@ import Footer from "../components/Footer.astro";
 						date="15 de Diciembre, 2024"
 						time="16:30"
 						location="Complejo Deportivo Central"
+						rotation="right"
 					/>
 				</div>
 			</div>

@@ -1,9 +1,18 @@
 @import "tailwindcss";
 
+/* Custom Fonts */
+@font-face {
+  font-family: 'GraffitiStyle';
+  src: url('/fonts/GraffitiStyle-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-heading: 'Oswald', sans-serif;
-  --font-graffiti: 'Permanent Marker', cursive;
+  --font-graffiti: 'GraffitiStyle', cursive;
 
   /* LDS FC Palette - UPDATED TO CYAN/BLUE */
   --color-background: #0f0f0f;
@@ -29,7 +38,7 @@
 }
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;700&family=Permanent+Marker&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Oswald:wght@400;500;700&family=Permanent+Marker&family=Rubik+Wet+Paint&display=swap');
 
   html {
     font-family: var(--font-sans);
@@ -65,5 +74,22 @@
 
   .clip-path-slope {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  /* Marquee Animation */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 20s linear infinite;
   }
 }
