@@ -10,6 +10,67 @@ import HomeCommunity from "../components/home/HomeCommunity.astro";
 import HomeStore from "../components/home/HomeStore.astro";
 import HomeContact from "../components/home/HomeContact.astro";
 import Footer from "../components/shared/Footer.astro";
+import { supabase } from "../lib/supabase";
+
+// 1. Fetch Players (Limit 3 for display)
+const { data: playersData } = await supabase
+	.from("players")
+	.select("*")
+	.limit(3);
+const players = playersData || [];
+
+// 2. Fetch Products (Limit 3, with badges)
+const { data: productsData } = await supabase
+	.from("products")
+	.select("*, badge:badges(text, color)")
+	.limit(3);
+const products = (productsData || []).map((p: any) => ({
+	...p,
+	badge: p.badge, // Ensure badge structure matches
+}));
+
+// 3. Fetch Featured Story (Limit 1)
+const { data: storiesData } = await supabase
+	.from("stories")
+	.select("*")
+	.limit(1);
+const featuredStory =
+	storiesData && storiesData.length > 0 ? storiesData[0] : null;
+
+// 4. Fetch Matches (Next and Last)
+const { data: matchesData } = await supabase
+	.from("matches")
+	.select(
+		`
+        *,
+        match_players (
+            is_starter,
+            goals,
+            player:players (name)
+        )
+    `,
+	)
+	.order("created_at", { ascending: false }); // Assuming created_at helps or parsed date
+
+const allMatches = (matchesData || []).map((m: any) => {
+	// Transform match_players logic (same as partidos.astro)
+	const starters: any[] = [];
+	const bench: any[] = [];
+	if (m.match_players) {
+		m.match_players.forEach((mp: any) => {
+			const playerObj = {
+				name: mp.player.name,
+				goals: mp.goals > 0 ? mp.goals : undefined,
+			};
+			if (mp.is_starter) starters.push(playerObj);
+			else bench.push(playerObj);
+		});
+	}
+	return { ...m, squad: { starters, bench } };
+});
+
+const nextMatch = allMatches.find((m: any) => m.status === "NEXT");
+const lastMatch = allMatches.find((m: any) => m.status !== "NEXT"); // Simplification for now
 ---
 
 <Layout title="LDS FC | El Rugido">
@@ -100,36 +161,50 @@ import Footer from "../components/shared/Footer.astro";
 		<section class="py-24 px-6 md:px-12 relative z-10">
 			<div class="max-w-7xl mx-auto flex flex-col items-center">
 				<h2
-					class="font-heading text-xl md:text-2xl text-neutral-400 uppercase tracking-[0.2em] mb-12"
+					class="font-graffiti text-xl md:text-6xl uppercase tracking-[0.2em] mb-12"
 				>
-					<span class="text-neutral-600">LA</span> FECHA
+					LA FECHA
 				</h2>
 
 				<div
 					class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 w-full max-w-6xl px-4"
 				>
-					<MatchCard
-						variant="neutral"
-						label="Ultimo Resultado"
-						team1="LDS FC"
-						team2="FC Barrio Norte"
-						score1="3"
-						score2="1"
-						date="8 de Diciembre, 2024"
-						location="Cancha Municipal"
-						isResult={true}
-						rotation="left"
-					/>
-					<MatchCard
-						variant="cyan"
-						label="Próximo Partido"
-						team1="LDS FC"
-						team2="Los Guerreros FC"
-						date="15 de Diciembre, 2024"
-						time="16:30"
-						location="Complejo Deportivo Central"
-						rotation="right"
-					/>
+					{
+						lastMatch && (
+							<MatchCard
+								variant="neutral"
+								label="Ultimo Resultado"
+								team1="LDS FC"
+								team2={lastMatch.rival}
+								score1={
+									lastMatch.result?.split("-")[0].trim() ||
+									"0"
+								}
+								score2={
+									lastMatch.result?.split("-")[1].trim() ||
+									"0"
+								}
+								date={lastMatch.date}
+								location={lastMatch.place}
+								isResult={true}
+								rotation="left"
+							/>
+						)
+					}
+					{
+						nextMatch && (
+							<MatchCard
+								variant="cyan"
+								label="Próximo Partido"
+								team1="LDS FC"
+								team2={nextMatch.rival}
+								date={nextMatch.date}
+								time={nextMatch.time}
+								location={nextMatch.place}
+								rotation="right"
+							/>
+						)
+					}
 				</div>
 
 				<div class="mt-12 text-center">
@@ -146,13 +221,13 @@ import Footer from "../components/shared/Footer.astro";
 
 		<HomeManifesto />
 
-		<HomeSquad />
+		<HomeSquad players={players} />
 
 		<HomeTraining />
 
-		<HomeCommunity />
+		<HomeCommunity story={featuredStory} />
 
-		<HomeStore />
+		<HomeStore products={products} />
 
 		<HomeContact />
 

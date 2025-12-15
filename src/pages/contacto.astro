@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Mail, MapPin, Instagram } from "lucide-react";
+import { Mail, MapPin, Instagram, MessageCircle } from "lucide-react";
 
 const reasons = [
     "Quiero jugar",
@@ -179,35 +179,18 @@ const reasons = [
                     </h3>
                     <div class="flex gap-4">
                         <a
-                            href="#"
+                            href="https://www.instagram.com/lds_fc_25/"
+                            target="_blank"
                             class="w-16 h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
                         >
                             <Instagram size={32} />
                         </a>
                         <a
-                            href="#"
+                            href="https://wa.me/56939268844"
+                            target="_blank"
                             class="w-16 h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-brand-tiktok"
-                                width="32"
-                                height="32"
-                                viewBox="0 0 24 24"
-                                stroke-width="2"
-                                stroke="currentColor"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                            >
-                                <path
-                                    stroke="none"
-                                    d="M0 0h24v24H0z"
-                                    fill="none"></path>
-                                <path
-                                    d="M21 7.917v4.034a9.948 9.948 0 0 1 -5 -1.951v4.5a6.5 6.5 0 1 1 -8 -6.326v4.326a2.5 2.5 0 1 0 4 2v-11.5h4.083a6.005 6.005 0 0 0 4.917 4.917"
-                                ></path>
-                            </svg>
+                            <MessageCircle size={32} />
                         </a>
                     </div>
                 </div>
@@ -227,8 +210,8 @@ const reasons = [
     ) as HTMLTextAreaElement;
     const wordCountDisplay = document.getElementById("word-count");
 
-    // WhatsApp Phone Number (Placeholder)
-    const PHONE_NUMBER = "5491112345678"; // TODO: Replace with actual number
+    // WhatsApp Phone Number
+    const PHONE_NUMBER = "56939268844";
 
     // Word Count Validation
     messageInput?.addEventListener("input", () => {

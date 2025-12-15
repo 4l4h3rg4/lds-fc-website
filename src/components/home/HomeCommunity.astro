@@ -1,5 +1,7 @@
 ---
 import { MessageSquare, Heart } from "lucide-react";
+
+const { story } = Astro.props as { story: { author: string; body: string; likes: number } };
 ---
 
 <section
@@ -16,6 +18,7 @@ import { MessageSquare, Heart } from "lucide-react";
         </h2>
 
         <!-- Featured Story Card -->
+        {story && (
         <div class="relative group max-w-2xl mx-auto mb-12">
             <!-- Red Pin -->
             <div
@@ -30,24 +33,24 @@ import { MessageSquare, Heart } from "lucide-react";
                 <p
                     class="font-heading text-xl md:text-2xl text-black leading-normal mb-6 uppercase"
                 >
-                    "Hace 2 años no toco la droga gracias a que este equipo me
-                    dio una camiseta y una responsabilidad."
+                    "{story.body}"
                 </p>
                 <div
                     class="flex items-center justify-between border-t border-black/10 pt-4"
                 >
                     <span
                         class="font-bold text-black uppercase tracking-wider text-sm"
-                        >- El Colo</span
+                        >- {story.author}</span
                     >
                     <div
                         class="flex items-center gap-2 text-[#E63946] font-bold font-mono text-sm"
                     >
-                        <Heart size={16} fill="currentColor" /> 142
+                        <Heart size={16} fill="currentColor" /> {story.likes || 0}
                     </div>
                 </div>
             </div>
         </div>
+        )}
 
         <a
             href="/comunidad"

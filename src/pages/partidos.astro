@@ -7,10 +7,18 @@ interface Player {
     goals?: number;
 }
 
+import { supabase } from "../lib/supabase";
+
+interface Player {
+    name: string;
+    goals?: number;
+}
+
 interface Match {
     id: string;
     type: string;
     date: string;
+    displayDate?: string;
     time: string;
     rival: string;
     place: string;
@@ -22,74 +30,87 @@ interface Match {
     };
 }
 
-const matches: Match[] = [
-    {
-        id: "m1",
-        type: "TORNEO",
-        date: "12 DIC",
-        time: "14:00",
-        rival: "Los Pibes FC",
-        place: "Cancha Norte",
-        result: null,
-        status: "NEXT",
+const { data: matchesData, error } = await supabase.from("matches").select(
+    `
+        *,
+        match_players (
+            is_starter,
+            goals,
+            player:players (name)
+        )
+    `,
+);
+
+const formatMatchDate = (dateStr: string) => {
+    if (!dateStr) return "";
+    // Check if YYYY-MM-DD
+    if (dateStr.match(/^\d{4}-\d{2}-\d{2}$/)) {
+        const [year, month, day] = dateStr.split("-");
+        return `${day}/${month}`;
+    }
+    return dateStr;
+};
+
+const rawMatches = (matchesData || []).map((m: any) => {
+    // Transform match_players into starters and bench
+    const starters: Player[] = [];
+    const bench: Player[] = [];
+
+    if (m.match_players) {
+        m.match_players.forEach((mp: any) => {
+            const playerObj = {
+                name: mp.player.name,
+                goals: mp.goals > 0 ? mp.goals : undefined,
+            };
+
+            if (mp.is_starter) {
+                starters.push(playerObj);
+            } else {
+                bench.push(playerObj);
+            }
+        });
+    }
+
+    return {
+        id: m.id,
+        type: m.type,
+        date: m.date, // Keep raw for sorting
+        displayDate: formatMatchDate(m.date), // Formatted for UI
+        time: m.time,
+        rival: m.rival,
+        place: m.place,
+        result: m.result,
+        status: m.status as "NEXT" | "WON" | "DRAW" | "LOST",
         squad: {
-            starters: [
-                { name: "Muro" },
-                { name: "Capi" },
-                { name: "El Tanque" },
-                { name: "Zurdo" },
-                { name: "La Pulga" },
-                { name: "Rayo" },
-                { name: "El Mago" },
-            ],
-            bench: [{ name: "Loco" }, { name: "Chino" }, { name: "Pela" }],
+            starters,
+            bench,
         },
-    },
-    {
-        id: "m2",
-        type: "AMISTOSO",
-        date: "05 DIC",
-        time: "20:00",
-        rival: "Barrio Alto",
-        place: "Sede Central",
-        result: "3 - 1",
-        status: "WON",
-        squad: {
-            starters: [
-                { name: "Muro" },
-                { name: "Capi" },
-                { name: "El Tanque", goals: 1 },
-                { name: "Zurdo" },
-                { name: "La Pulga", goals: 2 },
-                { name: "Rayo" },
-                { name: "El Mago" },
-            ],
-            bench: [{ name: "Loco" }, { name: "Chino" }],
-        },
-    },
-    {
-        id: "m3",
-        type: "TORNEO",
-        date: "28 NOV",
-        time: "16:00",
-        rival: "Furia Roja",
-        place: "Estadio Muni",
-        result: "1 - 1",
-        status: "DRAW",
-        squad: {
-            starters: [
-                { name: "Muro" },
-                { name: "Capi" },
-                { name: "El Tanque" },
-                { name: "Zurdo" },
-                { name: "La Pulga", goals: 1 },
-                { name: "Rayo" },
-                { name: "El Mago" },
-            ],
-            bench: [{ name: "Loco" }, { name: "Chino" }],
-        },
-    },
-];
+    };
+});
+
+// Sort matches
+const matches: Match[] = rawMatches.sort((a, b) => {
+    // 1. Priority: NEXT status first
+    if (a.status === "NEXT" && b.status !== "NEXT") return -1;
+    if (a.status !== "NEXT" && b.status === "NEXT") return 1;
+
+    // 2. Secondary Sort: Date
+    const dateA = new Date(`${a.date}T${a.time || "00:00"}`);
+    const dateB = new Date(`${b.date}T${b.time || "00:00"}`);
+
+    // If invalid dates (legacy data might be DD/MM), fallback to string comparison
+    if (isNaN(dateA.getTime()) || isNaN(dateB.getTime())) {
+        return b.date.localeCompare(a.date);
+    }
+
+    if (a.status === "NEXT") {
+        // For upcoming matches, ascending (soonest first)
+        return dateA.getTime() - dateB.getTime();
+    } else {
+        // For past matches, descending (newest first)
+        return dateB.getTime() - dateA.getTime();
+    }
+});
 ---
 
 <Layout title="LDS FC | Partidos">
@@ -125,7 +146,7 @@ const matches: Match[] = [
                             <div class="flex flex-col md:flex-row gap-6 md:items-center min-w-[200px]">
                                 <div class="text-center md:text-left">
                                     <span class="block font-heading text-3xl md:text-4xl text-white">
-                                        {m.date}
+                                        {m.displayDate}
                                     </span>
                                     <span class="block font-mono text-sm text-neutral-500">
                                         {m.type}

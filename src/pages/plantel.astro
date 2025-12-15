@@ -2,7 +2,9 @@
 import Layout from "../layouts/Layout.astro";
 import StickerCard from "../components/StickerCard.astro";
 
-// Mock Data
+import { supabase } from "../lib/supabase";
+
+// Mock Data Interface (matches DB schema)
 interface Player {
     name: string;
     role: string;
@@ -11,39 +13,8 @@ interface Player {
     image?: string;
 }
 
-const players: Player[] = [
-    {
-        name: "El Tanque",
-        role: "Defensa",
-        number: "04",
-        quote: "No pasa nadie.",
-    },
-    {
-        name: "La Pulga",
-        role: "Mediocampo",
-        number: "10",
-        quote: "El balón al piso.",
-    },
-    {
-        name: "Muro",
-        role: "Arquero",
-        number: "01",
-        quote: "Mi arco es sagrado.",
-    },
-    {
-        name: "Rayo",
-        role: "Delantero",
-        number: "07",
-        quote: "Correr hasta morir.",
-    },
-    { name: "Capi", role: "Capitán", number: "05", quote: "Cabeza fría." },
-    {
-        name: "Zurdo",
-        role: "Lateral",
-        number: "03",
-        quote: "Por la banda se gana.",
-    },
-];
+const { data: playersData } = await supabase.from('players').select('*');
+const players = playersData || [];
 ---
 
 <Layout title="LDS FC | El Plantel">

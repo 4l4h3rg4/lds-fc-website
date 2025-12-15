@@ -2,23 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import { MessageSquare, Heart } from "lucide-react";
 
-const stories = [
-    {
-        author: "El Colo",
-        body: "Hace 2 años no toco la droga gracias a que este equipo me dio una camiseta y una responsabilidad.",
-        likes: 142,
-    },
-    {
-        author: "Marta (Vecina)",
-        body: "Verlos jugar los domingos es la alegría de la cuadra. Nunca cambien.",
-        likes: 89,
-    },
-    {
-        author: "Lucas D.",
-        body: "Cuando mi viejo falleció, los pibes del club fueron los únicos que estuvieron ahí. Eso no se olvida.",
-        likes: 203,
-    },
-];
+import { supabase } from "../lib/supabase";
+
+const { data: storiesData } = await supabase.from('stories').select('*');
+const stories = storiesData || [];
 ---
 
 <Layout title="LDS FC | La Tribuna">
@@ -61,7 +48,7 @@ const stories = [
                                 </span>
                                 <div class="flex items-center gap-2 text-[#E63946] font-bold font-mono">
                                     <Heart size={18} fill="currentColor" />
-                                    <span>{s.likes}</span>
+                                    <span>{s.likes || 0}</span>
                                 </div>
                             </div>
                         </div>

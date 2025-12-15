@@ -1,27 +1,13 @@
 ---
-const players = [
-    {
-        name: "El Tanque",
-        role: "Defensa",
-        number: "04",
-        image: "/logo LDS FC.png",
-        quote: "No pasa nadie."
-    },
-    {
-        name: "La Pulga",
-        role: "Mediocampo",
-        number: "10",
-        image: "/logo LDS FC.png",
-        quote: "El balón al piso."
-    },
-    {
-        name: "Muro",
-        role: "Arquero",
-        number: "01",
-        image: "/logo LDS FC.png",
-        quote: "Mi arco es sagrado."
-    }
-];
+interface Player {
+    name: string;
+    role: string;
+    number: string;
+    image: string;
+    quote: string;
+}
+
+const { players } = Astro.props as { players: Player[] };
 ---
 
 <section class="py-24 px-6 relative border-t border-white/5 bg-[#0a0a0a]">
@@ -29,7 +15,7 @@ const players = [
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <div>
-                <h2 class="font-heading text-3xl md:text-5xl text-white uppercase tracking-wider mb-2">
+                <h2 class="font-graffiti text-3xl md:text-5xl text-white uppercase tracking-wider mb-2">
                     LA FAMILIA
                 </h2>
                 <p class="text-neutral-400 font-mono text-sm uppercase tracking-widest">

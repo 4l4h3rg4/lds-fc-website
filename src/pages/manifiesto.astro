@@ -41,8 +41,8 @@ const historyEvents = [
     <main class="w-full bg-[#0f0f0f] text-white overflow-x-hidden">
         <!-- Header -->
         <div class="pt-32 pb-16 text-center px-6">
-            <h1 class="font-heading text-6xl md:text-8xl tracking-widest uppercase mb-4">
-                <span class="text-neutral-500">EL</span> MANIFIESTO
+            <h1 class="font-graffiti text-6xl md:text-8xl tracking-widest uppercase mb-4">
+                EL MANIFIESTO
             </h1>
             <p class="text-neutral-400 font-light tracking-wide text-sm md:text-base">
                 Nuestra historia no se cuenta, se siente.
@@ -151,44 +151,6 @@ const historyEvents = [
                 <img src="/hero-frase.png" alt="Hero Frase" class="w-full h-full object-cover opacity-80">
             </div>
         </article>
-
-
-        <!-- Timeline Section -->
-        <section class="max-w-5xl mx-auto px-6 mb-32 relative">
-            <h2 class="font-heading text-3xl md:text-4xl text-center uppercase mb-20">
-                <span class="text-[var(--color-neon-cyan)]">Nuestra</span> Historia
-            </h2>
-
-            <div class="relative">
-                <!-- Vertical Line -->
-                <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2"></div>
-
-                <div class="space-y-16">
-                    {historyEvents.map((event, index) => (
-                        <div class={`flex flex-col md:flex-row gap-8 relative items-start ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                            <!-- Content Side -->
-                            <div class="flex-1 md:text-right w-full pl-20 md:pl-0">
-                                <div class={`${index % 2 === 0 ? 'md:text-left md:pl-16' : 'md:text-right md:pr-16'}`}>
-                                    <h3 class="font-heading text-xl text-white mb-2">{event.title}</h3>
-                                    <p class="text-neutral-400 font-light text-sm leading-relaxed">{event.description}</p>
-                                </div>
-                            </div>
-
-                            <!-- Timeline Node -->
-                            <div class="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-16 h-16 flex items-center justify-center bg-[#0f0f0f] border border-[#0f0f0f] z-10">
-                                <div class="w-12 h-8 rounded-full bg-[var(--color-neon-cyan)] flex items-center justify-center text-black font-bold text-[10px]">
-                                    {event.year}
-                                </div>
-                            </div>
-                            
-                            <!-- Empty Side for Balance -->
-                            <div class="hidden md:block flex-1"></div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-
         <Footer />
     </main>
 </Layout>

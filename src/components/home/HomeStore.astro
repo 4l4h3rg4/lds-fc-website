@@ -1,26 +1,19 @@
 ---
 import { ShoppingBag } from "lucide-react";
 
-const products = [
-    {
-        title: "Camiseta Oficial LDS FC",
-        price: "$35.000",
-        badge: {
-            text: "MÁS VENDIDO",
-            color: "bg-[var(--color-neon-cyan)] text-black",
-        },
-    },
-    {
-        title: "Poleron 'El que abandona, pierde'",
-        price: "$45.000",
-        badge: null,
-    },
-    {
-        title: "Pack de Stickers LDS",
-        price: "$5.000",
-        badge: null,
-    },
-];
+interface Product {
+    id: number;
+    title: string;
+    description: string;
+    price: string;
+    image: string;
+    badge?: {
+        text: string;
+        color: string;
+    };
+}
+
+const { products } = Astro.props as { products: Product[] };
 ---
 
 <section class="py-24 px-6 border-t border-white/5 bg-[#050505]">
@@ -31,7 +24,7 @@ const products = [
         >
             <div>
                 <h2
-                    class="font-heading text-3xl md:text-5xl text-white uppercase tracking-wider mb-2"
+                    class="font-graffiti text-3xl md:text-5xl text-white uppercase tracking-wider mb-2"
                 >
                     EL ESTANDARTE
                 </h2>
@@ -66,8 +59,16 @@ const products = [
                             </div>
                         )}
 
-                        <div class="aspect-square bg-[#1a1a1a] flex items-center justify-center mb-8 border border-white/5 group-hover:bg-[#222] transition-colors">
-                            <ShoppingBag className="text-white/20 w-12 h-12 stroke-[1]" />
+                        <div class="aspect-square bg-[#1a1a1a] flex items-center justify-center mb-8 border border-white/5 group-hover:bg-[#222] transition-colors relative overflow-hidden">
+                            {p.image ? (
+                                <img
+                                    src={p.image}
+                                    alt={p.title}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                />
+                            ) : (
+                                <ShoppingBag className="text-white/20 w-12 h-12 stroke-[1]" />
+                            )}
                         </div>
 
                         <h3 class="font-heading text-xl text-white uppercase mb-2">
@@ -77,9 +78,13 @@ const products = [
                             <span class="font-heading text-xl text-[var(--color-neon-cyan)]">
                                 {p.price}
                             </span>
-                            <span class="text-neutral-500 font-mono text-xs uppercase group-hover:text-white transition-colors">
-                                Ver producto
-                            </span>
+                            <button
+                                class="buy-button bg-white text-black font-heading uppercase text-xs md:text-sm px-4 py-2 hover:bg-[var(--color-neon-cyan)] transition-colors tracking-wide"
+                                data-title={p.title}
+                                data-price={p.price}
+                            >
+                                LO QUIERO
+                            </button>
                         </div>
                     </div>
                 ))
@@ -97,3 +102,28 @@ const products = [
         </div>
     </div>
 </section>
+
+<script>
+    // WhatsApp Phone Number
+    const PHONE_NUMBER = "56939268844";
+
+    // Select all buy buttons
+    const buttons = document.querySelectorAll(".buy-button");
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const title = button.getAttribute("data-title");
+            const price = button.getAttribute("data-price");
+
+            if (!title || !price) return;
+
+            // Constuct Message
+            const message = `¡Hola! Estuve viendo la pagina web y me interesa comprar el producto: *${title}* (${price}). ¿Tienen stock?`;
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`;
+
+            window.open(whatsappUrl, "_blank");
+        });
+    });
+</script>
