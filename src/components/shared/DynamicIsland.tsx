@@ -56,11 +56,10 @@ export default function DynamicIsland() {
                                 className="w-full h-11 flex items-center justify-between px-4 cursor-pointer"
                                 onClick={toggleMenu}
                             >
-                                <div className="flex items-center gap-2">
-                                    <div className="h-2 w-2 rounded-full bg-[var(--color-neon-cyan)] animate-pulse" />
-                                    <span className="text-xs font-bold uppercase tracking-wider text-neutral-300">Prox. Partido</span>
+                                <div className="flex items-center gap-2 w-full justify-center">
+                                    <Menu size={16} className="text-[var(--color-neon-cyan)]" />
+                                    <span className="text-sm font-bold uppercase tracking-widest text-neutral-300">MENÚ</span>
                                 </div>
-                                <span className="text-[10px] text-neutral-500 font-mono">DOM 12:00</span>
                             </motion.div>
                         )}
 
@@ -115,7 +114,7 @@ export default function DynamicIsland() {
                         )}
                     </AnimatePresence>
                 </motion.div>
-            </motion.div>
-        </div>
+            </motion.div >
+        </div >
     );
 }

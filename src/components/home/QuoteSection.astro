@@ -1,5 +1,13 @@
 ---
-
+const quotes = [
+    "El barrio me enseñó a caer, el club me enseñó a levantarme.",
+    "Aquí no jugamos por dinero, jugamos por la familia que elegimos.",
+    "En cada pase hay una historia, en cada gol una revancha.",
+    "El fútbol fue mi escape, este club se convirtió en mi hogar.",
+    "No importa de dónde vienes, importa lo que dejas en la cancha.",
+    "Sangre, sudor y gloria. Así se escribe nuestra historia.",
+    "Cuando el mundo te da la espalda, el equipo te da la mano.",
+];
 ---
 
 <section
@@ -7,29 +15,17 @@
 >
     <div class="relative z-10 max-w-4xl">
         <span
-            class="font-graffiti block text-2xl mb-6 tracking-[0.2em] uppercase"
+            class="font-graffiti block text-2xl mb-6 tracking-[0.2em] uppercase text-[var(--color-neon-cyan)]"
         >
             Voces del Barrio
         </span>
 
         <h2
-            class="font-heading text-4xl md:text-6xl lg:text-7xl font-bold uppercase leading-none mb-8"
+            id="quote-text"
+            class="font-heading text-3xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight mb-8 min-h-[1.5em] transition-opacity duration-500"
         >
-            "Uno se cae, pero <span class="text-white block md:inline"
-                >diez lo levantan."</span
-            >
-        </h2>
-
-        <!-- Pagination Dots -->
-        <div class="flex items-center justify-center gap-2 mt-8">
-            <div class="w-1.5 h-1.5 rounded-full bg-neutral-600"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-neutral-600"></div>
-            <div class="w-8 h-1.5 rounded-full bg-[var(--color-neon-cyan)]">
-            </div>
-            <div class="w-1.5 h-1.5 rounded-full bg-neutral-600"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-neutral-600"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-neutral-600"></div>
-        </div>
+            "{quotes[0]}"
+        </h2>        
     </div>
 
     <!-- Background Glow -->
@@ -38,3 +34,24 @@
     >
     </div>
 </section>
+
+<script define:vars={{ quotes }}>
+    const quoteElement = document.getElementById("quote-text");
+    let currentIndex = 0;
+
+    if (quoteElement) {
+        setInterval(() => {
+            // Fade out
+            quoteElement.style.opacity = "0";
+
+            setTimeout(() => {
+                // Change text
+                currentIndex = (currentIndex + 1) % quotes.length;
+                quoteElement.innerText = `"${quotes[currentIndex]}"`;
+
+                // Fade in
+                quoteElement.style.opacity = "1";
+            }, 500); // Wait for fade out
+        }, 5000); // Change every 5 seconds
+    }
+</script>

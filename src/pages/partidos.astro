@@ -116,7 +116,7 @@ const matches: Match[] = rawMatches.sort((a, b) => {
 <Layout title="LDS FC | Partidos">
     <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
         <h1
-            class="font-graffiti text-6xl md:text-8xl text-white uppercase mb-16"
+            class="font-graffiti text-5xl md:text-8xl text-white uppercase mb-8 md:mb-16 break-words"
         >
             Partidos
         </h1>
@@ -129,7 +129,8 @@ const matches: Match[] = rawMatches.sort((a, b) => {
                         data-match-id={m.id}
                     >
                         {/* Header Content */}
-                        <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative z-10">
+                        {/* Header Content */}
+                        <div class="p-5 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 relative z-10 w-full">
                             {/* Status Strip */}
                             <div
                                 class={`absolute left-0 top-0 bottom-0 w-1 ${
@@ -143,7 +144,26 @@ const matches: Match[] = rawMatches.sort((a, b) => {
                                 }`}
                             />
 
-                            <div class="flex flex-col md:flex-row gap-6 md:items-center min-w-[200px]">
+                            {/* Mobile Top Row: Date & Time */}
+                            <div class="flex md:hidden w-full items-center justify-between border-b border-white/5 pb-3 mb-1">
+                                <div class="flex flex-col">
+                                    <span class="font-heading text-2xl text-white leading-none">
+                                        {m.displayDate}
+                                    </span>
+                                    <span class="font-mono text-[10px] text-neutral-500 uppercase mt-1">
+                                        {m.type}
+                                    </span>
+                                </div>
+                                <div class="flex items-center gap-1.5 text-[var(--color-neon-cyan)]/80">
+                                    <Clock size={14} />
+                                    <span class="font-mono text-xs">
+                                        {m.time} HS
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Desktop Date Section - Preserved */}
+                            <div class="hidden md:flex flex-col md:flex-row gap-6 md:items-center min-w-[200px]">
                                 <div class="text-center md:text-left">
                                     <span class="block font-heading text-3xl md:text-4xl text-white">
                                         {m.displayDate}
@@ -161,29 +181,39 @@ const matches: Match[] = rawMatches.sort((a, b) => {
                                 </div>
                             </div>
 
-                            <div class="flex-1 flex flex-col md:flex-row items-start md:items-center justify-center gap-4 w-full">
-                                <span class="font-heading text-2xl md:text-3xl text-white">
+                            {/* Teams Section */}
+                            <div class="flex-1 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-4 w-full">
+                                <span class="font-heading text-3xl md:text-3xl text-white order-1">
                                     LDS FC
                                 </span>
-                                <span class="font-mono text-xl text-neutral-600">
+                                <span class="font-mono text-sm md:text-xl text-neutral-600 order-2 md:px-2">
                                     VS
                                 </span>
-                                <span class="font-heading text-2xl md:text-3xl text-neutral-300">
+                                <span class="font-heading text-3xl md:text-3xl text-neutral-300 order-3 text-center">
                                     {m.rival}
                                 </span>
+                                {/* Mobile Location */}
+                                <div class="flex md:hidden items-center gap-1 mt-1 text-neutral-500 order-4">
+                                    <MapPin size={10} />
+                                    <span class="text-[10px] uppercase tracking-wide">
+                                        {m.place}
+                                    </span>
+                                </div>
                             </div>
 
-                            <div class="flex flex-col items-end min-w-[150px]">
+                            {/* Status/Result Section */}
+                            <div class="flex flex-col items-center md:items-end min-w-[150px] w-full md:w-auto mt-2 md:mt-0">
                                 {m.result ? (
-                                    <span class="font-heading text-4xl text-[var(--color-neon-cyan)]">
+                                    <span class="font-heading text-4xl md:text-4xl text-[var(--color-neon-cyan)]">
                                         {m.result}
                                     </span>
                                 ) : (
-                                    <span class="font-heading text-xl text-white bg-[var(--color-neon-cyan)]/20 px-3 py-1 rounded-sm border border-[var(--color-neon-cyan)]/30 animate-pulse">
+                                    <span class="font-heading text-lg md:text-xl text-white bg-[var(--color-neon-cyan)]/20 px-4 md:px-3 py-1.5 md:py-1 rounded-sm border border-[var(--color-neon-cyan)]/30 animate-pulse">
                                         PRÓXIMO
                                     </span>
                                 )}
-                                <div class="flex items-center gap-1 mt-2 text-neutral-500">
+                                {/* Desktop Location */}
+                                <div class="hidden md:flex items-center gap-1 mt-2 text-neutral-500">
                                     <MapPin size={12} />
                                     <span class="text-[10px] uppercase">
                                         {m.place}

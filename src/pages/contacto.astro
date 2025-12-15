@@ -17,13 +17,13 @@ const reasons = [
         <!-- HEADER -->
         <div class="relative z-10 mb-12 text-center">
             <h1
-                class="font-graffiti text-7xl md:text-9xl uppercase tracking-tighter leading-none relative inline-block"
+                class="font-graffiti text-5xl md:text-9xl uppercase tracking-tighter leading-none relative inline-block break-words"
             >
                 CONTACTO
 
                 <!-- #LDS_OFFICIAL Sticker -->
                 <div
-                    class="absolute -bottom-2 right-0 bg-white text-black font-graffiti text-sm px-2 py-0.5 transform -rotate-3 border border-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
+                    class="absolute -bottom-2 right-0 md:right-0 bg-white text-black font-graffiti text-xs md:text-3xl px-2 py-0.5 transform -rotate-3 border border-black shadow-[2px_2px_0px_0px_rgba(255,255,255,0.2)]"
                 >
                     #LDS_OFFICIAL
                 </div>
@@ -31,7 +31,7 @@ const reasons = [
         </div>
 
         <div
-            class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start"
+            class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start"
         >
             <!-- FORM COLUMN -->
             <div class="relative w-full">
@@ -43,9 +43,9 @@ const reasons = [
 
                 <!-- Main Form Card -->
                 <div
-                    class="bg-[#050505] border-2 border-white p-8 md:p-12 relative shadow-2xl"
+                    class="bg-[#050505] border-2 border-white p-5 md:p-12 relative shadow-2xl"
                 >
-                    <form class="space-y-8" id="contact-form">
+                    <form class="space-y-6 md:space-y-8" id="contact-form">
                         <!-- Name Input -->
                         <div class="space-y-2">
                             <label
@@ -90,7 +90,7 @@ const reasons = [
                             <label
                                 class="block font-heading text-white text-xl uppercase tracking-wide"
                             >
-                                danos más detalles
+                                anos más detalles
                             </label>
                             <textarea
                                 id="message-input"
@@ -108,7 +108,7 @@ const reasons = [
 
                         <!-- Submit Button -->
                         <button
-                            class="w-full bg-[var(--color-neon-cyan)] text-black font-heading text-2xl uppercase py-4 hover:bg-[#22d3ee] transition-colors shadow-[0_0_20px_rgba(34,211,238,0.3)]"
+                            class="w-full bg-[var(--color-neon-cyan)] text-black font-heading text-xl md:text-2xl uppercase py-4 hover:bg-[#22d3ee] transition-colors shadow-[0_0_20px_rgba(34,211,238,0.3)]"
                         >
                             ENVIAR MENSAJE
                         </button>
@@ -117,50 +117,54 @@ const reasons = [
             </div>
 
             <!-- INFO / SIDEBAR COLUMN -->
-            <div class="space-y-8 pt-8 lg:pt-0">
+            <div class="space-y-6 md:space-y-8 pt-4 lg:pt-0">
                 <!-- CONTACT INFO BOX -->
                 <div
-                    class="border-2 border-white p-8 md:p-10 relative bg-[#050505] shadow-[0_0_30px_rgba(34,211,238,0.1)]"
+                    class="border-2 border-white p-6 md:p-10 relative bg-[#050505] shadow-[0_0_30px_rgba(34,211,238,0.1)]"
                 >
                     <h3
-                        class="font-heading text-3xl text-white uppercase mb-10 tracking-wide"
+                        class="font-heading text-2xl md:text-3xl text-white uppercase mb-8 md:mb-10 tracking-wide"
                     >
                         Otras formas de contacto
                     </h3>
 
                     <div class="space-y-8">
-                        <div class="flex items-start gap-6 group">
-                            <Mail className="text-white mt-1 w-6 h-6" />
+                        <div class="flex items-start gap-4 md:gap-6 group">
+                            <Mail
+                                className="text-white mt-1 w-5 h-5 md:w-6 md:h-6 shrink-0"
+                            />
                             <div>
                                 <h4
-                                    class="font-bold text-white uppercase tracking-wider mb-1"
+                                    class="font-bold text-white uppercase tracking-wider mb-1 text-sm md:text-base"
                                 >
                                     EMAIL
                                 </h4>
                                 <a
                                     href="mailto:contacto@ldsfc.com"
-                                    class="text-neutral-400 font-mono hover:text-[var(--color-neon-cyan)] transition-colors"
+                                    class="text-neutral-400 font-mono hover:text-[var(--color-neon-cyan)] transition-colors text-sm md:text-base break-all"
                                 >
                                     contacto@ldsfc.com
                                 </a>
                             </div>
                         </div>
 
-                        <div class="flex items-start gap-6 group">
-                            <MapPin className="text-white mt-1 w-6 h-6" />
+                        <div class="flex items-start gap-4 md:gap-6 group">
+                            <MapPin
+                                className="text-white mt-1 w-5 h-5 md:w-6 md:h-6 shrink-0"
+                            />
                             <div>
                                 <h4
-                                    class="font-bold text-white uppercase tracking-wider mb-1"
+                                    class="font-bold text-white uppercase tracking-wider mb-1 text-sm md:text-base"
                                 >
                                     DÓNDE ESTAMOS
                                 </h4>
                                 <p
-                                    class="text-neutral-400 font-mono text-[var(--color-neon-cyan)]"
+                                    class="text-neutral-400 font-mono text-[var(--color-neon-cyan)] text-sm md:text-base"
                                 >
                                     Bajos de Mena, Puente Alto
                                 </p>
                                 <p
-                                    class="text-neutral-600 font-mono text-sm mt-1"
+                                    class="text-neutral-600 font-mono text-xs md:text-sm mt-1"
                                 >
                                     (La ubicación exacta la compartimos por
                                     mensaje)
@@ -171,9 +175,9 @@ const reasons = [
                 </div>
 
                 <!-- REDES BOX -->
-                <div class="border-2 border-[#1a1a1a] p-8 md:p-10 bg-[#0a0a0a]">
+                <div class="border-2 border-[#1a1a1a] p-6 md:p-10 bg-[#0a0a0a]">
                     <h3
-                        class="font-heading text-3xl text-white uppercase mb-6 tracking-wide"
+                        class="font-heading text-2xl md:text-3xl text-white uppercase mb-6 tracking-wide"
                     >
                         REDES
                     </h3>
@@ -181,16 +185,19 @@ const reasons = [
                         <a
                             href="https://www.instagram.com/lds_fc_25/"
                             target="_blank"
-                            class="w-16 h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
+                            class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
                         >
-                            <Instagram size={32} />
+                            <Instagram size={28} className="md:w-8 md:h-8" />
                         </a>
                         <a
                             href="https://wa.me/56939268844"
                             target="_blank"
-                            class="w-16 h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
+                            class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-[#1a1a1a] text-white hover:bg-[var(--color-neon-cyan)] hover:text-black transition-all border border-white/10 hover:border-transparent"
                         >
-                            <MessageCircle size={32} />
+                            <MessageCircle
+                                size={28}
+                                className="md:w-8 md:h-8"
+                            />
                         </a>
                     </div>
                 </div>

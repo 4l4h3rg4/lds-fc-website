@@ -20,9 +20,9 @@ const galleryImages = [
     <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 space-y-32">
         <!-- SECTION 1: HEADER "EL TALLER" -->
         <section class="text-center relative">
-            <div class="relative inline-block">
+            <div class="relative inline-block w-full px-2">
                 <h1
-                    class="font-graffiti text-8xl md:text-[10rem] leading-none text-white uppercase relative z-10 tracking-tighter"
+                    class="font-graffiti text-6xl md:text-[10rem] leading-none text-white uppercase relative z-10 tracking-tighter break-words"
                 >
                     EL TALLER
                 </h1>
@@ -32,14 +32,14 @@ const galleryImages = [
                 class="border-t border-b border-[var(--color-neon-cyan)] py-2 max-w-2xl mx-auto mt-4 mb-16 relative"
             >
                 <h2
-                    class="font-mono text-[var(--color-neon-cyan)] uppercase tracking-[0.2em] text-sm md:text-base"
+                    class="font-mono text-[var(--color-neon-cyan)] uppercase tracking-[0.2em] text-xs md:text-base px-2"
                 >
                     Donde se fabrican guerreros
                 </h2>
             </div>
 
             <div
-                class="bg-neutral-900 border-l-4 border-[var(--color-neon-cyan)] p-8 md:p-12 max-w-4xl mx-auto text-left relative overflow-hidden shadow-2xl"
+                class="bg-neutral-900 border-l-4 border-[var(--color-neon-cyan)] p-6 md:p-12 max-w-4xl mx-auto text-left relative overflow-hidden shadow-2xl mx-4 md:mx-auto"
             >
                 <div
                     class="absolute top-0 right-0 bg-white text-black px-3 py-1 font-mono text-xs font-bold uppercase"
@@ -47,7 +47,7 @@ const galleryImages = [
                     Filosofía LDS
                 </div>
                 <p
-                    class="font-heading text-3xl md:text-3xl text-white uppercase leading-tight mb-4"
+                    class="font-heading text-2xl md:text-3xl text-white uppercase leading-tight mb-4 mt-4 md:mt-0"
                 >
                     "Acá no venimos a pasar el rato. Se corre hasta que el
                     cuerpo dice basta, y después se corre un poco más."
@@ -65,12 +65,12 @@ const galleryImages = [
 
         <!-- SECTION 2: SCHEDULE "LA RUTINA" -->
         <section>
-            <div class="flex items-center gap-4 mb-12">
+            <div class="flex items-center gap-4 mb-8 md:mb-12">
                 <Clock
-                    className="text-[var(--color-neon-cyan)] w-8 h-8 md:w-12 md:h-12"
+                    className="text-[var(--color-neon-cyan)] w-8 h-8 md:w-12 md:h-12 shrink-0"
                 />
                 <h2
-                    class="font-heading text-5xl md:text-6xl text-white uppercase"
+                    class="font-heading text-4xl md:text-6xl text-white uppercase break-words"
                 >
                     La Rutina
                 </h2>
@@ -79,18 +79,21 @@ const galleryImages = [
             <div class="grid gap-4">
                 <!-- Lunes -->
                 <div
-                    class="bg-white/5 border border-white/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between group hover:border-[var(--color-neon-cyan)]/30 transition-colors"
+                    class="bg-white/5 border border-white/5 p-5 md:p-8 flex flex-col md:flex-row items-center justify-between group hover:border-[var(--color-neon-cyan)]/30 transition-colors"
                 >
-                    <div class="text-center md:text-left mb-4 md:mb-0">
+                    <div
+                        class="text-center md:text-left mb-3 md:mb-0 w-full md:w-auto"
+                    >
                         <span
                             class="block font-heading text-3xl text-[var(--color-neon-cyan)] uppercase mb-1"
                             >Lunes</span
                         >
-                        <span class="font-mono text-white text-xl"
+                        <span class="font-mono text-white text-lg md:text-xl"
                             >19:00 - 21:00</span
                         >
                     </div>
-                    <span class="font-heading text-white/50 text-xl uppercase"
+                    <span
+                        class="font-heading text-white/50 text-lg md:text-xl uppercase text-center md:text-left mb-2 md:mb-0"
                         >Físico / Resistencia</span
                     >
                     <span class="font-mono text-neutral-500 text-sm"
@@ -100,18 +103,21 @@ const galleryImages = [
 
                 <!-- Miércoles -->
                 <div
-                    class="bg-white/5 border border-white/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between group hover:border-[var(--color-neon-cyan)]/30 transition-colors"
+                    class="bg-white/5 border border-white/5 p-5 md:p-8 flex flex-col md:flex-row items-center justify-between group hover:border-[var(--color-neon-cyan)]/30 transition-colors"
                 >
-                    <div class="text-center md:text-left mb-4 md:mb-0">
+                    <div
+                        class="text-center md:text-left mb-3 md:mb-0 w-full md:w-auto"
+                    >
                         <span
                             class="block font-heading text-3xl text-[var(--color-neon-cyan)] uppercase mb-1"
                             >Miércoles</span
                         >
-                        <span class="font-mono text-white text-xl"
+                        <span class="font-mono text-white text-lg md:text-xl"
                             >19:00 - 21:00</span
                         >
                     </div>
-                    <span class="font-heading text-white/50 text-xl uppercase"
+                    <span
+                        class="font-heading text-white/50 text-lg md:text-xl uppercase text-center md:text-left mb-2 md:mb-0"
                         >Táctico / Espacios Reducidos</span
                     >
                     <span class="font-mono text-neutral-500 text-sm"
@@ -121,18 +127,21 @@ const galleryImages = [
 
                 <!-- Viernes -->
                 <div
-                    class="bg-white/5 border border-white/5 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between group hover:border-[var(--color-neon-cyan)]/30 transition-colors"
+                    class="bg-white/5 border border-white/5 p-5 md:p-8 flex flex-col md:flex-row items-center justify-between group hover:border-[var(--color-neon-cyan)]/30 transition-colors"
                 >
-                    <div class="text-center md:text-left mb-4 md:mb-0">
+                    <div
+                        class="text-center md:text-left mb-3 md:mb-0 w-full md:w-auto"
+                    >
                         <span
                             class="block font-heading text-3xl text-[var(--color-neon-cyan)] uppercase mb-1"
                             >Viernes</span
                         >
-                        <span class="font-mono text-white text-xl"
+                        <span class="font-mono text-white text-lg md:text-xl"
                             >20:00 - 22:00</span
                         >
                     </div>
-                    <span class="font-heading text-white/50 text-xl uppercase"
+                    <span
+                        class="font-heading text-white/50 text-lg md:text-xl uppercase text-center md:text-left mb-2 md:mb-0"
                         >Fútbol Formal / Pelota Parada</span
                     >
                     <span class="font-mono text-neutral-500 text-sm"
@@ -143,7 +152,7 @@ const galleryImages = [
 
             <!-- WARNING BOX -->
             <div
-                class="mt-8 border border-red-900/50 bg-red-900/10 p-6 flex gap-4 items-start rounded-sm"
+                class="mt-8 border border-red-900/50 bg-red-900/10 p-5 md:p-6 flex gap-4 items-start rounded-sm"
             >
                 <AlertTriangle className="text-red-500 shrink-0 mt-1" />
                 <p class="font-mono text-red-200 text-sm">
@@ -157,11 +166,13 @@ const galleryImages = [
         <!-- SECTION 3: GALLERY -->
         <section>
             <h2
-                class="font-heading text-5xl md:text-6xl text-white uppercase mb-12 text-center"
+                class="font-heading text-4xl md:text-6xl text-white uppercase mb-8 md:mb-12 text-center"
             >
                 En la Sangre
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div
+                class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4"
+            >
                 {
                     galleryImages.map((img, i) => (
                         <div class="aspect-square relative overflow-hidden group bg-neutral-800">
@@ -170,7 +181,7 @@ const galleryImages = [
                            In a real app, use <img src={img} ... /> 
                         */}
                             <div class="w-full h-full bg-neutral-800 flex items-center justify-center text-white/10 group-hover:text-white/30 transition-colors border border-white/5">
-                                <span class="font-heading text-4xl">
+                                <span class="font-heading text-2xl md:text-4xl">
                                     {i + 1}
                                 </span>
                             </div>
@@ -189,7 +200,7 @@ const galleryImages = [
         <!-- SECTION 4: RECRUITMENT -->
         <section class="flex justify-center pb-20">
             <div
-                class="bg-[#f0f0f0] text-black p-8 md:p-12 max-w-4xl w-full transform rotate-1 shadow-2xl relative paper-texture"
+                class="bg-[#f0f0f0] text-black p-6 md:p-12 max-w-4xl w-full transform md:rotate-1 shadow-2xl relative paper-texture"
             >
                 <!-- Tape/Pin effect (Optional visual flair) -->
                 <div
@@ -199,55 +210,58 @@ const galleryImages = [
 
                 <!-- Sticker -->
                 <div
-                    class="absolute -right-6 -top-6 bg-[#E63946] text-white p-4 transform rotate-12 shadow-lg z-10"
+                    class="absolute -right-2 -top-4 md:-right-6 md:-top-6 bg-[#E63946] text-white p-3 md:p-4 transform rotate-12 shadow-lg z-10"
                 >
                     <p
-                        class="font-graffiti text-lg md:text-xl leading-none text-center"
+                        class="font-graffiti text-sm md:text-xl leading-none text-center"
                     >
                         SOLO<br />PARA<br />VALIENTES
                     </p>
                 </div>
 
                 <div
-                    class="flex items-center gap-4 border-b-4 border-black pb-6 mb-8"
+                    class="flex items-center gap-3 md:gap-4 border-b-4 border-black pb-6 mb-8 mt-2"
                 >
-                    <CheckSquare size={48} className="stroke-[3]" />
+                    <CheckSquare
+                        size={32}
+                        className="stroke-[3] md:w-12 md:h-12"
+                    />
                     <h2
-                        class="font-heading text-6xl md:text-7xl uppercase tracking-tighter text-[#E63946]"
+                        class="font-heading text-3xl md:text-7xl uppercase tracking-tighter text-[#E63946] break-words"
                     >
                         Reclutamiento
                     </h2>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 mb-12">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 mb-12">
                     <div>
                         <h3
-                            class="font-bold border-b-2 border-[#E63946] inline-block mb-4 uppercase text-lg"
+                            class="font-bold border-b-2 border-[#E63946] inline-block mb-4 uppercase text-base md:text-lg"
                         >
                             Requisitos Obligatorios:
                         </h3>
                         <ul class="space-y-3 font-mono text-sm">
                             <li class="flex items-start gap-2">
                                 <span
-                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full"
+                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full shrink-0"
                                 ></span>
                                 Compromiso total (faltas sin aviso = fuera).
                             </li>
                             <li class="flex items-start gap-2">
                                 <span
-                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full"
+                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full shrink-0"
                                 ></span>
                                 Botines propios (no importa la marca).
                             </li>
                             <li class="flex items-start gap-2">
                                 <span
-                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full"
+                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full shrink-0"
                                 ></span>
                                 Hidratación propia.
                             </li>
                             <li class="flex items-start gap-2">
                                 <span
-                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full"
+                                    class="block w-1.5 h-1.5 bg-black mt-1.5 rounded-full shrink-0"
                                 ></span>
                                 Cuota social al día (si podés, si no lo charlamos).
                             </li>
@@ -256,7 +270,7 @@ const galleryImages = [
 
                     <div>
                         <h3
-                            class="font-bold border-b-2 border-[#E63946] inline-block mb-4 uppercase text-lg"
+                            class="font-bold border-b-2 border-[#E63946] inline-block mb-4 uppercase text-base md:text-lg"
                         >
                             Lo que te espera:
                         </h3>
@@ -264,7 +278,7 @@ const galleryImages = [
                             No prometemos titularidad. Prometemos que vas a
                             terminar muerto, pero mejor jugador y mejor persona.
                         </p>
-                        <p class="font-heading text-xl uppercase">
+                        <p class="font-heading text-lg md:text-xl uppercase">
                             ¿Te la bancás?
                         </p>
                     </div>
@@ -273,11 +287,13 @@ const galleryImages = [
                 <div class="text-center">
                     <a
                         href="/contacto"
-                        class="inline-block border-2 border-black px-12 py-4 font-heading text-2xl uppercase hover:bg-black hover:text-white transition-colors tracking-widest"
+                        class="inline-block border-2 border-black px-8 md:px-12 py-3 md:py-4 font-heading text-lg md:text-2xl uppercase hover:bg-black hover:text-white transition-colors tracking-widest w-full md:w-auto"
                     >
                         Quiero Probarme
                     </a>
-                    <p class="mt-4 font-mono text-xs text-neutral-500">
+                    <p
+                        class="mt-4 font-mono text-[10px] md:text-xs text-neutral-500"
+                    >
                         * Menores de 18 años con autorización de padres o tutor.
                     </p>
                 </div>

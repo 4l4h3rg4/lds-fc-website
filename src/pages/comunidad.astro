@@ -16,12 +16,12 @@ const stories = storiesData || [];
 
             <!-- Foreground "LA TRIBUNA" -->
             <div class="relative z-10 inline-block">
-                <h1 class="font-graffiti md:text-9xl leading-none uppercase tracking-tighter relative">
+                <h1 class="font-graffiti text-6xl md:text-9xl leading-none uppercase tracking-tighter relative">
                     LA TRIBUNA
                 </h1>
                 
                 <!-- #LDS_OFFICIAL Sticker -->
-                <div class="absolute -bottom-4 right-0 md:-right-12 bg-white text-black font-graffiti text-lg md:text-xl px-4 py-1 transform -rotate-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
+                <div class="absolute -bottom-4 right-0 md:-right-12 bg-white text-black font-graffiti text-sm md:text-xl px-4 py-1 transform -rotate-6 border-2 border-black shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
                     #LDS_OFFICIAL
                 </div>
             </div>
@@ -46,10 +46,6 @@ const stories = storiesData || [];
                                 <span class="font-heading text-xl text-black uppercase">
                                     {s.author}
                                 </span>
-                                <div class="flex items-center gap-2 text-[#E63946] font-bold font-mono">
-                                    <Heart size={18} fill="currentColor" />
-                                    <span>{s.likes || 0}</span>
-                                </div>
                             </div>
                         </div>
                     </div>
