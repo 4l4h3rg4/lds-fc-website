@@ -1,0 +1,79 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/entrenamientos/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/partidos/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/plantel/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/tienda/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/admin/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/comunidad/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/contacto/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/entrenamientos/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/lds/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/manifiesto/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/partidos/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/plantel/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/tienda/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		}
+	]
+}

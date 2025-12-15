@@ -1,0 +1,17 @@
+import { e as createComponent, m as maybeRenderHead, k as renderComponent, r as renderTemplate } from './astro/server_C6pIef4S.mjs';
+import { Instagram, MessageCircle } from 'lucide-react';
+
+const $$Footer = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${maybeRenderHead()}<footer class="w-full bg-[#0a0a0a] border-t border-white/5 pt-20 pb-10 px-6 md:px-12 relative overflow-hidden"> <!-- Top Gradient Line --> <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--color-neon-cyan)]/50 to-transparent"></div> <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-24"> <!-- Brand Column --> <div class="col-span-1 lg:col-span-2 space-y-8"> <div class="flex items-center gap-3"> <img src="/logo LDS FC.png" alt="LDS FC Logo" class="h-16 w-auto"> <!-- Adjusting logo filter to match footer style if needed, or just use raw --> <div class="flex flex-col"> <span class="font-heading font-bold text-xl tracking-tighter leading-none">L.D.S FC</span> <span class="text-[10px] tracking-[0.2em] text-[var(--color-neon-cyan)] uppercase">Los de Siempre</span> </div> </div> <p class="text-neutral-500 text-sm leading-relaxed max-w-sm">
+Un círculo que no se rompe. Un espacio donde uno se cae, pero
+                diez lo levantan.
+</p> <p class="font-heading font-bold text-xl text-[var(--color-neon-cyan)]">
+"El que abandona, pierde."
+</p> </div> <!-- Navigation --> <div class="flex flex-col gap-4"> <h4 class="font-heading font-bold text-white uppercase tracking-wider mb-2">
+Navegación
+</h4> <nav class="flex flex-col gap-3 text-sm text-neutral-400"> <a href="/manifiesto" class="hover:text-[var(--color-neon-cyan)] transition-colors">→ Manifiesto</a> <a href="/plantel" class="hover:text-[var(--color-neon-cyan)] transition-colors">→ Plantel</a> <a href="/partidos" class="hover:text-[var(--color-neon-cyan)] transition-colors">→ Partidos</a> <a href="/comunidad" class="hover:text-[var(--color-neon-cyan)] transition-colors">→ Comunidad</a> </nav> </div> <!-- Contact --> <div class="flex flex-col gap-4"> <h4 class="font-heading font-bold text-white uppercase tracking-wider mb-2">
+Contacto
+</h4> <div class="flex flex-col gap-3 text-sm text-neutral-400"> <a href="mailto:contacto@ldsfc.com" class="hover:text-white transition-colors">contacto@ldsfc.com</a> <span>Bajos de Mena, Puente Alto</span> </div> <!-- Socials --> <div class="flex gap-4 mt-4"> <a href="https://www.instagram.com/lds_fc_25/" target="_blank" class="text-[var(--color-neon-cyan)] hover:text-white transition-colors"> ${renderComponent($$result, "Instagram", Instagram, { "size": 20 })} </a> <span class="text-neutral-700">|</span> <a href="https://wa.me/56939268844" target="_blank" class="text-[var(--color-neon-cyan)] hover:text-white transition-colors"> ${renderComponent($$result, "MessageCircle", MessageCircle, { "size": 20 })} </a> </div> </div> </div> <!-- Bottom Copy --> <div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-neutral-600 font-mono uppercase tracking-wider text-center md:text-left"> <span>© 2025 LDS FC — Los De Siempre.</span> <span class="text-[var(--color-neon-cyan)]">Barrio. Familia. Rugido.</span> </div> </footer>`;
+}, "C:/Users/ficam/Documents/GitHub/lds-fc-website/src/components/shared/Footer.astro", void 0);
+
+export { $$Footer as $ };

@@ -1,0 +1,354 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { ShoppingBag } from "lucide-react";
+
+interface Product {
+    id: number;
+    title: string;
+    description: string;
+    price: string;
+    badge?: {
+        text: string;
+        color: string; // Tailwind class component or color value
+    };
+}
+
+import { supabase } from "../lib/supabase";
+
+interface Product {
+    id: number;
+    title: string;
+    description: string;
+    price: string;
+    image: string;
+    badge?: {
+        text: string;
+        color: string; // Tailwind class component or color value
+    };
+}
+
+const { data: productsData } = await supabase
+    .from("products")
+    .select(
+        `
+    *,
+    badge:badges (text, color)
+  `,
+    )
+    .order("created_at", { ascending: true }); // Keep original order if possible, or created_at
+
+const products: Product[] = (productsData || []).map((p: any) => ({
+    id: p.id,
+    title: p.title,
+    description: p.description,
+    price: p.price,
+    image: p.image,
+    badge: p.badge, // relational join returns object or null, matches interface
+}));
+---
+
+<Layout title="LDS FC | El Estandarte">
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20">
+        <!-- HEADER SECTION -->
+        <div class="text-center mb-24 max-w-4xl mx-auto">
+            <h1
+                class="font-graffiti text-6xl md:text-6xl text-white uppercase mb-4 tracking-tighter"
+            >
+                EL ESTANDARTE
+            </h1>
+            <p
+                class="font-mono text-neutral-400 text-sm md:text-base uppercase tracking-widest mb-12"
+            >
+                No vendemos ropa. Compartimos identidad.
+            </p>
+        </div>
+
+        <!-- PRODUCTS GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
+            {
+                products.map((p) => (
+                    <div
+                        data-id={p.id}
+                        class="product-card cursor-pointer bg-[#111] border border-white/5 p-6 md:p-8 flex flex-col group hover:border-[var(--color-neon-cyan)]/30 transition-all duration-300 relative"
+                    >
+                        {/* Badge */}
+                        {p.badge && (
+                            <div
+                                class={`absolute -top-3 right-4 px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider ${p.badge.color}`}
+                            >
+                                {p.badge.text}
+                            </div>
+                        )}
+
+                        {/* Image */}
+                        <div class="aspect-square bg-[#1a1a1a] flex items-center justify-center mb-8 border border-white/5 group-hover:bg-[#222] transition-colors overflow-hidden relative">
+                            {p.image ? (
+                                <img
+                                    src={p.image}
+                                    alt={p.title}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                />
+                            ) : (
+                                <ShoppingBag className="text-white/20 w-12 h-12 stroke-[1]" />
+                            )}
+                        </div>
+
+                        <h2 class="font-heading text-2xl text-white uppercase mb-2">
+                            {p.title}
+                        </h2>
+
+                        <p class="font-mono text-xs md:text-sm text-neutral-500 mb-4 leading-relaxed line-clamp-3 flex-1">
+                            {p.description}
+                        </p>
+
+                        <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+                            <span class="font-heading text-2xl text-[var(--color-neon-cyan)]">
+                                {p.price}
+                            </span>
+                            <button
+                                class="buy-button bg-white text-black font-heading uppercase text-sm px-6 py-2 hover:bg-neutral-200 transition-colors tracking-wide"
+                                data-title={p.title}
+                                data-price={p.price}
+                            >
+                                QUIERO
+                            </button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- FOOTER / PROFIT SECTION -->
+        <div
+            class="text-center py-16 border-t border-white/10 relative overflow-hidden"
+        >
+            <!-- Background Blur Element -->
+            <div
+                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-[var(--color-neon-cyan)]/5 blur-[100px] -z-10 rounded-full"
+            >
+            </div>
+
+            <h3
+                class="font-heading text-3xl md:text-5xl text-white uppercase mb-4 tracking-wide"
+            >
+                100% de las ganancias vuelven al club
+            </h3>
+            <p class="text-neutral-500 max-w-2xl mx-auto text-sm md:text-base">
+                Equipamiento, proyectos sociales. Cada compra es un aporte
+                directo a la familia LDS.
+            </p>
+        </div>
+    </main>
+
+    <!-- PRODUCT DETAIL MODAL -->
+    <div
+        id="product-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 hidden opacity-0 transition-opacity duration-300"
+    >
+        <div
+            class="bg-[#111] border border-white/20 p-6 md:p-8 rounded-sm w-full max-w-4xl relative shadow-[0_0_50px_rgba(34,211,238,0.1)] max-h-[90vh] overflow-y-auto flex flex-col md:flex-row gap-8"
+        >
+            <button
+                id="close-modal"
+                class="absolute top-4 right-4 text-neutral-500 hover:text-white transition-colors z-10"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-x"
+                    ><path d="M18 6 6 18"></path><path d="m6 6 12 12"
+                    ></path></svg
+                >
+            </button>
+
+            <!-- Modal Image -->
+            <div
+                class="w-full md:w-1/2 bg-[#050505] flex items-center justify-center border border-white/5 relative aspect-square md:aspect-auto"
+            >
+                <img
+                    id="modal-image"
+                    src=""
+                    alt=""
+                    class="w-full h-full object-cover hidden"
+                />
+                <div id="modal-placeholder" class="text-white/20">
+                    <ShoppingBag className="w-16 h-16 stroke-[1]" />
+                </div>
+            </div>
+
+            <!-- Modal Info -->
+            <div class="w-full md:w-1/2 flex flex-col">
+                <h2
+                    id="modal-title"
+                    class="font-heading text-3xl md:text-4xl text-white uppercase mb-4 leading-none"
+                >
+                </h2>
+                <div class="flex items-center gap-4 mb-6">
+                    <span
+                        id="modal-price"
+                        class="font-heading text-2xl text-[var(--color-neon-cyan)]"
+                    ></span>
+                    <span
+                        id="modal-badge"
+                        class="font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 hidden"
+                    ></span>
+                </div>
+
+                <div
+                    class="prose prose-invert prose-sm mb-8 flex-1 overflow-y-auto pr-2 max-h-[40vh]"
+                >
+                    <p
+                        id="modal-description"
+                        class="font-mono text-neutral-400 whitespace-pre-wrap"
+                    >
+                    </p>
+                </div>
+
+                <div
+                    class="mt-auto pt-6 border-t border-white/5 sticky bottom-0 bg-[#111]"
+                >
+                    <button
+                        id="modal-buy-button"
+                        class="w-full bg-white text-black font-heading uppercase text-sm px-6 py-4 hover:bg-[var(--color-neon-cyan)] transition-colors tracking-wide flex items-center justify-center gap-2"
+                    >
+                        LO QUIERO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script
+    type="application/json"
+    id="products-data"
+    set:html={JSON.stringify(products)}
+/>
+
+<script>
+    // WhatsApp Phone Number
+    const PHONE_NUMBER = "56939268844";
+
+    // Data injection from server
+    const productsDataElement = document.getElementById("products-data");
+    if (!productsDataElement) throw new Error("Products data not found");
+    const productsData = JSON.parse(productsDataElement.textContent || "[]");
+
+    // DOM Elements
+    const modal = document.getElementById("product-modal");
+    const closeModal = document.getElementById("close-modal");
+    const modalImage = document.getElementById(
+        "modal-image",
+    ) as HTMLImageElement;
+    const modalPlaceholder = document.getElementById("modal-placeholder");
+    const modalTitle = document.getElementById("modal-title");
+    const modalPrice = document.getElementById("modal-price");
+    const modalBadge = document.getElementById("modal-badge");
+    const modalDescription = document.getElementById("modal-description");
+    const modalBuyButton = document.getElementById("modal-buy-button");
+    const productCards = document.querySelectorAll(".product-card");
+
+    let currentProduct: any = null;
+
+    // Functions
+    function openModal(product: any) {
+        currentProduct = product;
+
+        // Populate Data
+        if (modalTitle) modalTitle.textContent = product.title;
+        if (modalPrice) modalPrice.textContent = product.price;
+        if (modalDescription)
+            modalDescription.textContent = product.description;
+
+        if (product.image) {
+            if (modalImage) modalImage.src = product.image;
+            modalImage?.classList.remove("hidden");
+            modalPlaceholder?.classList.add("hidden");
+        } else {
+            modalImage?.classList.add("hidden");
+            modalPlaceholder?.classList.remove("hidden");
+        }
+
+        if (product.badge && modalBadge) {
+            modalBadge.textContent = product.badge.text;
+            modalBadge.className = `font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 ${product.badge.color}`;
+            modalBadge.classList.remove("hidden");
+        } else {
+            modalBadge?.classList.add("hidden");
+        }
+
+        // Show Modal
+        modal?.classList.remove("hidden");
+        // Small delay to allow display:block to apply before opacity transition
+        setTimeout(() => {
+            modal?.classList.remove("opacity-0");
+        }, 10);
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModalHandler() {
+        modal?.classList.add("opacity-0");
+        setTimeout(() => {
+            modal?.classList.add("hidden");
+        }, 300);
+        document.body.style.overflow = "";
+        currentProduct = null;
+    }
+
+    function handleBuy() {
+        if (!currentProduct) return;
+
+        const message = `¡Hola! Estuve viendo la pagina web y me interesa comprar el producto: *${currentProduct.title}* (${currentProduct.price}). ¿Tienen stock?`;
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`;
+        window.open(whatsappUrl, "_blank");
+    }
+
+    // Event Listeners
+    productCards.forEach((card) => {
+        card.addEventListener("click", (e) => {
+            // If clicking the inner buy button (original card button), don't open modal?
+            // Actually, keep behavior consistent. If user clicks "Quiero" on card, it goes to WA.
+            // If user clicks Card, it opens Modal.
+            if ((e.target as HTMLElement).closest(".buy-button")) return;
+
+            const id = card.getAttribute("data-id");
+            const product = productsData.find((p: any) => p.id == id);
+            if (product) openModal(product);
+        });
+    });
+
+    closeModal?.addEventListener("click", closeModalHandler);
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) closeModalHandler();
+    });
+    modalBuyButton?.addEventListener("click", handleBuy);
+
+    // Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+            closeModalHandler();
+        }
+    });
+
+    // Keep existing logic for direct card buttons if any
+    const buttons = document.querySelectorAll(".buy-button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const title = button.getAttribute("data-title");
+            const price = button.getAttribute("data-price");
+            if (!title || !price) return;
+            const message = `¡Hola! Estuve viendo la pagina web y me interesa comprar el producto: *${title}* (${price}). ¿Tienen stock?`;
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${PHONE_NUMBER}?text=${encodedMessage}`;
+            window.open(whatsappUrl, "_blank");
+        });
+    });
+</script>

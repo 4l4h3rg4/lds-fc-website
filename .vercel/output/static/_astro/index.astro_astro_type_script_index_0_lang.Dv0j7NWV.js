@@ -1,0 +1,1 @@
+import{s as t}from"./supabase.DaSDeVGQ.js";const n=async()=>{const{data:{session:s}}=await t.auth.getSession();s||(window.location.href="/lds")};n();const o=document.getElementById("logout-btn");o?.addEventListener("click",async()=>{await t.auth.signOut(),window.location.href="/lds"});

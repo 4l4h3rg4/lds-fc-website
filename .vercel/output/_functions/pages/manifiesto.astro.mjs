@@ -1,0 +1,69 @@
+import { e as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_C6pIef4S.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DZGFWMTf.mjs';
+import { $ as $$Footer } from '../chunks/Footer_5oyS-ok-.mjs';
+export { renderers } from '../renderers.mjs';
+
+const $$Manifiesto = createComponent(($$result, $$props, $$slots) => {
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": "LDS FC | El Manifiesto" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<main class="w-full bg-[#0f0f0f] text-white overflow-x-hidden"> <!-- Header --> <div class="pt-32 pb-16 text-center px-6"> <h1 class="font-graffiti text-6xl md:text-8xl tracking-widest uppercase mb-4">
+EL MANIFIESTO
+</h1> <p class="text-neutral-400 font-light tracking-wide text-sm md:text-base">
+Nuestra historia no se cuenta, se siente.
+</p> </div> <!-- Main Text Content --> <article class="max-w-3xl mx-auto px-6 space-y-16 mb-32"> <!-- Center Quote --> <div class="text-center"> <h2 class="font-heading text-2xl md:text-3xl text-[var(--color-neon-cyan)] uppercase tracking-wider mb-12">
+"El que abandona, pierde."
+</h2> <div class="space-y-6 text-neutral-300 font-light leading-relaxed text-lg"> <p>
+No nacimos en academias caras ni en canchas perfectas.
+<span class="text-[var(--color-neon-cyan)] font-normal">Nacimos en el barro</span>, 
+                        donde la pelota pica para cualquier lado, y la vida a veces corre en contra.
+</p> <p>
+Aquí nadie llega por casualidad. Llegamos porque buscábamos un rumbo, 
+                        un grupo que nos levantara cuando el mundo no lo hacía, o simplemente
+<span class="text-[var(--color-neon-cyan)] font-normal">un lugar donde sentir que pertenecemos</span>.
+</p> </div> </div> <!-- Highlighted Section (Left Border) --> <div class="border-l-4 border-[var(--color-neon-cyan)] pl-8 py-2 my-12"> <h3 class="font-heading text-2xl text-white mb-4 uppercase">
+LDS es eso. Un círculo que no se rompe.
+</h3> <p class="text-neutral-400 font-light leading-relaxed">
+Un equipo donde uno se cae, pero diez lo levantan. Un equipo que no te pregunta de 
+                    dónde vienes, <span class="text-[var(--color-neon-cyan)] font-normal">sino hacia dónde quieres ir</span>.
+</p> </div> <p class="text-neutral-300 font-light leading-relaxed text-lg text-center">
+Somos Los De Siempre porque siempre volvemos, siempre luchamos, siempre estamos. 
+                Aquí la lealtad vale más que cualquier gol.
+</p> <!-- Dark Box Section --> <div class="bg-white/5 border border-white/10 p-8 md:p-12 rounded-sm relative overflow-hidden"> <div class="relative z-10"> <p class="text-white font-medium mb-6">
+El escudo que nos guía no es un adorno. Es la imagen de lo que llevamos dentro:
+</p> <ul class="space-y-3 text-neutral-400 font-light text-sm md:text-base"> <li class="flex items-start gap-3"> <span class="text-[var(--color-neon-cyan)] mt-1">•</span>
+Una voz que resuena cuando el silencio intenta dominarnos.
+</li> <li class="flex items-start gap-3"> <span class="text-[var(--color-neon-cyan)] mt-1">•</span>
+Una mirada que levanta al compañero cuando baja la cabeza.
+</li> <li class="flex items-start gap-3"> <span class="text-[var(--color-neon-cyan)] mt-1">•</span>
+Una regla interna que dice: ¿Cayeron? ¿Seguimos? ¡Nos levantamos!
+</li> </ul> </div> </div> <div class="space-y-6 text-neutral-300 font-light leading-relaxed text-lg text-center"> <p>
+En este equipo todos corremos igual. Nadie es menos. Nadie sobra.
+<span class="text-[var(--color-neon-cyan)] font-bold uppercase text-sm">Todos importan</span>.
+</p> <p>
+El fútbol, para nosotros, es más que los minutos en cancha. 
+                    Es terapia. Es desahogo. Es lo único real cuando el mundo de afuera parece una farsa que nos ignora.
+<span class="text-[var(--color-neon-cyan)] font-normal">Es refugio cuando todo se pone dificil.</span> </p> </div> <div class="text-center py-16 relative"> <!-- Decorative Elements --> <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-full bg-[var(--color-neon-cyan)]/5 blur-3xl rounded-full z-0"></div> <h3 class="relative z-10 font-heading text-2xl md:text-4xl text-white uppercase tracking-widest mb-12 leading-tight">
+LDS FC no nació para ser uno más.<br> <span class="text-[var(--color-neon-cyan)]">Nació para demostrar que desde abajo también se puede.</span> </h3> <div class="relative z-10 text-base md:text-xl text-neutral-200 font-light max-w-3xl mx-auto leading-relaxed space-y-8"> <p>
+Que la calle no te define.<br>
+Que la familia se construye.<br>
+Que la fuerza verdadera no está en los músculos,<br> <strong class="font-bold text-white">sino en la decisión de volver a intentarlo.</strong> </p> <p class="text-[var(--color-neon-cyan)] text-2xl md:text-3xl rotate-1">
+Y aunque perdamos un partido,<br>
+jamás vamos a perder la esencia.
+</p> <p class="font-heading uppercase tracking-wider text-sm md:text-base border-t border-[var(--color-neon-cyan)]/30 pt-8 mt-8 inline-block px-12">
+Porque acá, en este escudo, en estos colores,<br>
+en esta historia que estamos escribiendo juntos,<br>
+hay una sola regla:
+</p> </div> <img src="/hero-frase.png" alt="Hero Frase" class="w-full h-full object-cover opacity-80"> </div> </article> ${renderComponent($$result2, "Footer", $$Footer, {})} </main> ` })}`;
+}, "C:/Users/ficam/Documents/GitHub/lds-fc-website/src/pages/manifiesto.astro", void 0);
+
+const $$file = "C:/Users/ficam/Documents/GitHub/lds-fc-website/src/pages/manifiesto.astro";
+const $$url = "/manifiesto";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    default: $$Manifiesto,
+    file: $$file,
+    url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
