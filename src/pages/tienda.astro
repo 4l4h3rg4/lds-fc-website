@@ -276,19 +276,19 @@ const products: Product[] = (productsData || []).map((p: any) => ({
             modalPlaceholder?.classList.remove("hidden");
         }
 
-        if (product.badge) {
+        if (product.badge && modalBadge) {
             modalBadge.textContent = product.badge.text;
             modalBadge.className = `font-mono text-xs font-bold uppercase tracking-wider px-2 py-1 ${product.badge.color}`;
             modalBadge.classList.remove("hidden");
         } else {
-            modalBadge.classList.add("hidden");
+            modalBadge?.classList.add("hidden");
         }
 
         // Show Modal
-        modal.classList.remove("hidden");
+        modal?.classList.remove("hidden");
         // Small delay to allow display:block to apply before opacity transition
         setTimeout(() => {
-            modal.classList.remove("opacity-0");
+            modal?.classList.remove("opacity-0");
         }, 10);
         document.body.style.overflow = "hidden";
     }
