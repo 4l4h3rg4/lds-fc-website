@@ -50,7 +50,7 @@ export default function DynamicIsland() {
                         {activeState === 'idle' && (
                             <motion.div
                                 key="idle"
-                                initial={{ opacity: 0 }}
+                                initial={{ opacity: 1 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 className="w-full h-11 flex items-center justify-between px-4 cursor-pointer"
