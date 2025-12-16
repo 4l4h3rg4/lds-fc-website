@@ -64,7 +64,8 @@ export default function ImageUpload({ onUpload, currentImage, folder = 'uploads'
                     />
                     <button
                         onClick={(e) => { e.preventDefault(); removeImage(); }}
-                        className="absolute top-2 right-2 bg-red-600 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="absolute top-2 right-2 bg-red-600 hover:bg-red-700 text-white p-2 rounded-full shadow-lg transition-colors z-10"
+                        title="Eliminar imagen"
                     >
                         <X size={16} />
                     </button>
