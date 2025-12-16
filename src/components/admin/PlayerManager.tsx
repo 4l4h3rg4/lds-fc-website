@@ -151,24 +151,43 @@ export default function PlayerManager() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {players.map(player => (
-                    <div key={player.id} className="bg-[#111] border border-white/10 p-4 flex gap-4 group hover:border-white/30 transition-colors">
-                        <div className="w-16 h-16 bg-neutral-800 shrink-0 overflow-hidden">
+                    <div key={player.id} className="bg-[#111] border border-white/10 p-5 group hover:border-[var(--color-neon-cyan)]/30 transition-all duration-300 flex flex-col">
+                        <div className="w-full aspect-square bg-neutral-800 mb-4 overflow-hidden relative">
                             {player.image ? (
-                                <img src={player.image} alt={player.name} className="w-full h-full object-cover" />
+                                <img src={player.image} alt={player.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center text-neutral-600 font-bold">?</div>
                             )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <div className="flex justify-between items-start">
-                                <h4 className="text-white font-bold uppercase truncate">{player.name}</h4>
-                                <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button onClick={() => handleEdit(player)} className="text-cyan-400 hover:text-cyan-300"><Edit2 size={14} /></button>
-                                    <button onClick={() => handleDelete(player.id)} className="text-red-500 hover:text-red-400"><Trash2 size={14} /></button>
-                                </div>
+                            <div className="absolute top-2 right-2 bg-black/80 backdrop-blur-sm px-2 py-1 border border-white/10">
+                                <span className="text-[var(--color-neon-cyan)] font-mono text-xs font-bold">#{player.number}</span>
                             </div>
-                            <p className="text-[var(--color-neon-cyan)] font-mono text-xs">{player.role} #{player.number}</p>
-                            <p className="text-neutral-500 text-[10px] mt-1 truncate">"{player.quote}"</p>
+                        </div>
+
+                        <div className="flex justify-between items-start mb-2">
+                            <h4 className="text-white font-heading text-xl uppercase truncate flex-1 pr-2">{player.name}</h4>
+                        </div>
+
+                        <p className="text-neutral-400 font-mono text-xs uppercase tracking-wider mb-2">{player.role}</p>
+
+                        {player.quote && (
+                            <p className="text-neutral-500 text-sm italic line-clamp-2 h-10 mb-4">"{player.quote}"</p>
+                        )}
+
+                        <div className="flex items-center justify-end mt-auto pt-4 border-t border-white/5 gap-2">
+                            <button
+                                onClick={() => handleEdit(player)}
+                                className="bg-[#222] hover:bg-white hover:text-black text-white p-2 transition-colors border border-white/10"
+                                title="Editar"
+                            >
+                                <Edit2 size={18} />
+                            </button>
+                            <button
+                                onClick={() => handleDelete(player.id)}
+                                className="bg-[#222] hover:bg-red-600 hover:text-white text-white p-2 transition-colors border border-white/10"
+                                title="Eliminar"
+                            >
+                                <Trash2 size={18} />
+                            </button>
                         </div>
                     </div>
                 ))}

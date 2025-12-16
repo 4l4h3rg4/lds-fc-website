@@ -293,15 +293,17 @@ export default function MatchManager() {
                                 </select>
                             </div>
 
-                            <div>
-                                <label className="block text-xs font-mono text-neutral-400 uppercase mb-2">Resultado</label>
-                                <input
-                                    className="w-full bg-black border border-white/20 text-white px-3 py-3 text-sm focus:border-[var(--color-neon-cyan)] outline-none transition-colors"
-                                    value={formData.result || ''}
-                                    onChange={e => setFormData({ ...formData, result: e.target.value })}
-                                    placeholder="Ej: 3 - 1"
-                                />
-                            </div>
+                            {formData.status !== 'NEXT' && (
+                                <div>
+                                    <label className="block text-xs font-mono text-neutral-400 uppercase mb-2">Resultado</label>
+                                    <input
+                                        className="w-full bg-black border border-white/20 text-white px-3 py-3 text-sm focus:border-[var(--color-neon-cyan)] outline-none transition-colors"
+                                        value={formData.result || ''}
+                                        onChange={e => setFormData({ ...formData, result: e.target.value })}
+                                        placeholder="Ej: 3 - 1"
+                                    />
+                                </div>
+                            )}
 
                             <div>
                                 <label className="block text-xs font-mono text-neutral-400 uppercase mb-2">Tipo</label>
@@ -333,26 +335,29 @@ export default function MatchManager() {
 
                                             {isSelected && (
                                                 <div className="pl-8 flex items-center gap-4 animate-fade-in">
-                                                    <label className="flex items-center gap-2 cursor-pointer">
-                                                        <input
-                                                            type="checkbox"
-                                                            checked={isSelected.is_starter}
-                                                            onChange={(e) => updatePlayerStats(player.id, 'is_starter', e.target.checked)}
-                                                            className="accent-[var(--color-neon-cyan)]"
-                                                        />
-                                                        <span className="text-[10px] font-mono uppercase text-neutral-400">Titular</span>
-                                                    </label>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => updatePlayerStats(player.id, 'is_starter', !isSelected.is_starter)}
+                                                        className={`px-3 py-1 text-[10px] font-mono uppercase tracking-wider border transition-colors ${isSelected.is_starter
+                                                                ? 'bg-[var(--color-neon-cyan)] text-black border-[var(--color-neon-cyan)] font-bold shadow-[0_0_10px_rgba(34,211,238,0.3)]'
+                                                                : 'bg-transparent text-neutral-500 border-neutral-700 hover:border-neutral-500'
+                                                            }`}
+                                                    >
+                                                        {isSelected.is_starter ? 'TITULAR' : 'SUPLENTE'}
+                                                    </button>
 
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-[10px] font-mono uppercase text-neutral-400">Goles:</span>
-                                                        <input
-                                                            type="number"
-                                                            min="0"
-                                                            value={isSelected.goals}
-                                                            onChange={(e) => updatePlayerStats(player.id, 'goals', parseInt(e.target.value) || 0)}
-                                                            className="w-12 bg-black border border-white/20 text-white text-xs px-1 py-0.5 text-center focus:border-[var(--color-neon-cyan)] outline-none"
-                                                        />
-                                                    </div>
+                                                    {formData.status !== 'NEXT' && (
+                                                        <div className="flex items-center gap-2">
+                                                            <span className="text-[10px] font-mono uppercase text-neutral-400">Goles:</span>
+                                                            <input
+                                                                type="number"
+                                                                min="0"
+                                                                value={isSelected.goals}
+                                                                onChange={(e) => updatePlayerStats(player.id, 'goals', parseInt(e.target.value) || 0)}
+                                                                className="w-12 bg-black border border-white/20 text-white text-xs px-1 py-0.5 text-center focus:border-[var(--color-neon-cyan)] outline-none"
+                                                            />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )}
                                         </div>
@@ -395,9 +400,9 @@ export default function MatchManager() {
                                 )}
                             </div>
 
-                            <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <button onClick={() => handleEdit(m)} className="text-cyan-400 hover:text-cyan-300 p-2"><Edit2 size={16} /></button>
-                                <button onClick={() => handleDelete(m.id)} className="text-red-500 hover:text-red-400 p-2"><Trash2 size={16} /></button>
+                            <div className="flex gap-2">
+                                <button onClick={() => handleEdit(m)} className="text-cyan-400 hover:text-cyan-300 p-2 bg-neutral-900 border border-white/10 hover:border-cyan-400/50 transition-colors rounded-sm" title="Editar"><Edit2 size={16} /></button>
+                                <button onClick={() => handleDelete(m.id)} className="text-red-500 hover:text-red-400 p-2 bg-neutral-900 border border-white/10 hover:border-red-500/50 transition-colors rounded-sm" title="Eliminar"><Trash2 size={16} /></button>
                             </div>
                         </div>
                     </div>
